@@ -97,10 +97,13 @@ myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
     spawnOnce "picom &"
-    spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
+    spawnOnce "nm-applet &"
+    spawnOnce "blueman-applet &"
+    spawnOnce "redshift &"
+    spawnOnce "caffeine &"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 24 &"
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 23 &"
 
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     spawnOnce "feh --randomize --bg-fill ~/Pictures/wallpapers/*"  -- feh set random wallpaper

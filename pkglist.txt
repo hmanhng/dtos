@@ -6,6 +6,7 @@ bluez
 blueman
 bash
 bat
+conky
 exa
 fd
 fish
@@ -17,17 +18,16 @@ lolcat
 lxappearance
 lxsession
 maim
-multicolor-sddm-theme
 neofetch
 network-manager-applet
 opendoas
 otf-font-awesome
 pacman-contrib
+papirus-maia-icon-theme
 pcmanfm
 qt5ct
 qutebrowser
 ripgrep
-sddm
 sxiv
 ttf-mononoki
 ttf-ms-fonts

@@ -1,43 +1,8 @@
-if [ "$(id -u)" = 0 ]; then
-    echo "##################################################################"
-    echo "This script MUST NOT be run as root user since it makes changes"
-    echo "to the \$HOME directory of the \$USER executing this script."
-    echo "The \$HOME directory of the root user is, of course, '/root'."
-    echo "We don't want to mess around in there. So run this script as a"
-    echo "normal user. You will be asked for a sudo password when necessary."
-    echo "##################################################################"
-    exit 1
-fi
+#Yay
+git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
-error() { \
-    clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
-}
-
-echo "################################################################"
-echo "## Syncing the repos and installing 'dialog' if not installed ##"
-echo "################################################################"
-sudo pacman --noconfirm --needed -Sy dialog || error "Error syncing the repos."
-
-welcome() { \
-    dialog --colors --title "\Z7\ZbInstalling DTOS!" --msgbox "\Z4This is a script that will install what I sarcastically call DTOS (DT's operating system).  It's really just an installation script for those that want to try out my XMonad desktop.  We will add DTOS repos to Pacman and install the XMonad tiling window manager, the Xmobar panel, the Alacritty terminal, the Fish shell, Doom Emacs and many other essential programs needed to make my dotfiles work correctly.\\n\\n-DT (Derek Taylor, aka DistroTube)" 16 60
-
-    dialog --colors --title "\Z7\ZbStay near your computer!" --yes-label "Continue" --no-label "Exit" --yesno "\Z4This script is not allowed to be run as root, but you will be asked to enter your sudo password at various points during this installation. This is to give PACMAN the necessary permissions to install the software.  So stay near the computer." 8 60
-}
-
-welcome || error "User choose to exit."
-
-lastchance() { \
-    dialog --colors --title "\Z7\ZbInstalling DTOS!" --msgbox "\Z4WARNING! The DTOS installation script is currently in public beta testing. There are almost certainly errors in it; therefore, it is strongly recommended that you not install this on production machines. It is recommended that you try this out in either a virtual machine or on a test machine." 16 60
-
-    dialog --colors --title "\Z7\ZbAre You Sure You Want To Do This?" --yes-label "Begin Installation" --no-label "Exit" --yesno "\Z4Shall we begin installing DTOS?" 8 60 || { clear; exit 1; }
-}
-
-lastchance || error "User choose to exit."
-
-##########################################
-################Install###################
 # Let's install each package listed in the pkglist.txt file.
-sudo pacman --needed --ask 4 -Sy - < pkglist.txt
+yay --needed --noconfirm -Sy - < pkglist.txt
 
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
@@ -84,30 +49,6 @@ select choice in "${shells[@]}"; do
             ;;
     esac
 done
-
-# Disable the current login manager
-sudo systemctl disable $(grep '/usr/s\?bin' /etc/systemd/system/display-manager.service | awk -F / '{print $NF}') || echo "Cannot disable current display manager."
-# Enable sddm as login manager
-sudo systemctl enable sddm
-echo "###################################"
-echo "## Enable sddm as login manager. ##"
-echo "###################################"
-
-## Make multicolor-sddm-theme the default sddm theme
-# Arch uses this config location, I think.
-[ -f "/usr/lib/sddm/sddm.conf.d/default.conf" ] && \
-    sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /usr/lib/sddm/sddm.conf.d/default.conf.backup && \
-    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /usr/lib/sddm/sddm.conf.d/default.conf
-
-# Manjaro KDE uses this config location.
-[ -f "/etc/sddm.conf" ] && \
-    sudo cp /etc/sddm.conf /etc/sddm.conf.backup && \
-    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /etc/sddm.conf
-
-# ArcoLinuxB Awesome uses this config location.
-[ -f "/etc/sddm.conf.d/kde_settings.conf" ] && \
-    sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.backup && \
-    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /etc/sddm.conf.d/kde_settings.conf
 
 echo "##############################"
 echo "## DTOS has been installed! ##"
