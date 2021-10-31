@@ -1,0 +1,339 @@
+#+TITLE: DTOS
+#+DESCRIPTION: A post-installation script to install DT's xmonad desktop on an Arch-based distro.
+#+AUTHOR: Derek Taylor (DistroTube)
+#+PROPERTY: header-args :tangle dtos
+#+STARTUP: showeverything
+
+* TABLE OF CONTENTS :toc:
+- [[#about-dtos][About DTOS]]
+- [[#installing-dtos][Installing DTOS]]
+  - [[#installation-instructions][Installation instructions]]
+  - [[#potential-bugs][Potential bugs]]
+- [[#contributing-to-dtos][Contributing to DTOS]]
+  - [[#edit-readmeorg][Edit README.org]]
+  - [[#test-your-changes-before-pushing][Test your changes before pushing]]
+- [[#shebang-plus-comments][Shebang plus comments]]
+- [[#check-that-user-is-not-root][Check that user is NOT root!]]
+- [[#a-function-for-errors][A function for errors]]
+- [[#sync-the-repos-and-install-dialog][Sync the repos and install 'dialog']]
+- [[#welcome-message][Welcome message]]
+- [[#asking-user-to-confirm-choice-to-install-dtos][Asking user to confirm choice to install DTOS.]]
+- [[#adding-dtos-repo-to-pacmanconf][Adding DTOS repo to pacman.conf.]]
+- [[#adding-keyservers-to-gpgconf][Adding keyservers to gpg.conf.]]
+- [[#receiving-the-pgp-key][Receiving the PGP key]]
+- [[#install-the-packages-from-repositories][Install the packages from repositories]]
+- [[#copy-configs-over-from-etcdtos-into-home][Copy configs over from /etc/dtos into $HOME]]
+- [[#install-doom-emacs][Install Doom Emacs]]
+- [[#copy-pacman-hooks][Copy pacman hooks]]
+- [[#copy-dmscripts-config-and-set-important-variables][Copy dmscripts config and set important variables]]
+- [[#compiling-xmonad][Compiling xmonad]]
+- [[#compiling-the-xmonadctl-script][Compiling the xmonadctl script]]
+- [[#set-default-user-shell][Set default USER shell]]
+- [[#enable-sddm-for-login-manager][Enable SDDM for login manager]]
+- [[#message-stating-that-the-installation-is-complete][Message stating that the installation is complete!]]
+
+* About DTOS
+#+CAPTION: DTOS Scrot
+#+ATTR_HTML: :alt DTOS scrot :title DTOS Scrot :align left
+[[https://gitlab.com/dwt1/dotfiles/-/raw/master/.screenshots/dtos-thumb-01.png]]
+
+DTOS is the name that I have chosen for my post-installation script that will deploy my Xmonad config, my Emacs config, as well as associated programs that are needed to create a proper "desktop" experience.  DTOS should work on Arch Linux or any Arch-based distribution.  The programs that will be installed include Xmonad, Xmobar, Doom Emacs, Fish and other programs needed to recreate DT's XMonad desktop.  DTOS is only for x86_64 architecture and will not work on ARM devices such as the Raspberry Pi.
+
+* Installing DTOS
+** Installation instructions
+To install DTOS, you need to clone this repository and run the ~dtos~ script.
+#+begin_example
+git clone https://gitlab.com/dwt1/dtos
+cd dtos/
+./dtos
+#+end_example
+
+** Potential bugs
+*** Slow download times.
+This script can take a long time to complete since it will install more than 300 packages.  Also, make sure that the Linux distro that you are installing this on uses ParallelDownloads in /etc/pacman.conf for faster download times!  For an example, to enable ParallelDownloads so it downloads up to five packages at a time:
+
+#+begin_example
+ParallelDownloads = 5
+#+end_example
+*** Package conflicts that cause the script to fail
++ shell-color-scripts (from dtos-core-repo) conflicts with shell-color-scripts from the AUR.
++ dtos-opendoas (from dtos-core-repo) conflicts with opendoas from the Arch repos.
+
+The solution is, before running the script, edit the pkglist.txt file and remove the packages above.
+
+*** Doom Emacs doesn't launch.
+After the installation is completed, Doom Emacs may not launch correctly the very first time.  Killing the Emacs server (if running) and restarting it fixes this.
+#+begin_example
+killall emacs
+/usr/bin/emacs --daemon &
+#+end_example
+
+* Contributing to DTOS
+Community contributions to the DTOS script is welcomed.  There are a few things to consider before making a merge request.
+** Edit README.org
+I understand that non-Emacs users may be confused with the way literate programming works, but the actual DTOS script is ~README.org~ which gets converted to ~dtos~.  So the file you should edit is ~README.org~ and not ~dtos~.  Through the magic of Org Mode in Emacs, ~README.org~ gets converted to ~dtos~.  If you edit ~dtos~ (and not ~README.org~) and make a merge request, then I have to manually edit ~README.org~ to make it conform to your proposed changes.  For a big merge, this is a lot work and could lead to mistakes being made in copying/pasting your changes.
+
+To help non-Emacs users, there is a script in this repo (~convert.sh~) that will convert ~README.org~ into ~dtos~.  This will allow you to edit ~README.org~ in whatver editor that you prefer, and then convert it to see if exports to ~dtos~ correctly.
+** Test your changes before pushing
+It would be a good idea to keep a clean installation of an Arch-based distro in a virtual machine, and then clone that clean VM when you need to test the script.  Please don't do a merge request without attempting to run the script in a fresh VM (one that you haven't previously ran the script on).
+
+* Shebang plus comments
+#+begin_src bash :shebang "#!/usr/bin/env bash"
+#  ____ _____ ___  ____
+# |  _ \_   _/ _ \/ ___|   Derek Taylor (DistroTube)
+# | | | || || | | \___ \   http://www.youtube.com/c/DistroTube
+# | |_| || || |_| |___) |  http://www.gitlab.com/dwt1/dtos
+# |____/ |_| \___/|____/
+#
+# NAME: DTOS
+# DESC: An installation and deployment script for DT's Xmonad desktop.
+# WARNING: Run this script at your own risk.
+# DEPENDENCIES: dialog
+#+end_src
+* Check that user is NOT root!
+Don't run this script as root!  This is done for safety reasons.  This script makes a lot of changes to the $HOME of the $USER of this script.  For obvious reasons, we want $USER to not be 'root' and $HOME not to be '/root'.  Instead, run this script as a normal user.  You will be asked to enter a sudo password at several points during the installation.
+
+#+begin_src bash
+if [ "$(id -u)" = 0 ]; then
+    echo "##################################################################"
+    echo "This script MUST NOT be run as root user since it makes changes"
+    echo "to the \$HOME directory of the \$USER executing this script."
+    echo "The \$HOME directory of the root user is, of course, '/root'."
+    echo "We don't want to mess around in there. So run this script as a"
+    echo "normal user. You will be asked for a sudo password when necessary."
+    echo "##################################################################"
+    exit 1
+fi
+#+end_src
+
+* A function for errors
+#+begin_src bash
+error() { \
+    clear; printf "ERROR:\\n%s\\n" "$1" >&2; exit 1;
+}
+#+end_src
+
+* Sync the repos and install 'dialog'
+#+begin_src bash
+echo "################################################################"
+echo "## Syncing the repos and installing 'dialog' if not installed ##"
+echo "################################################################"
+sudo pacman --noconfirm --needed -Sy dialog || error "Error syncing the repos."
+#+end_src
+
+* Welcome message
+#+begin_src bash
+welcome() { \
+    dialog --colors --title "\Z7\ZbInstalling DTOS!" --msgbox "\Z4This is a script that will install what I sarcastically call DTOS (DT's operating system).  It's really just an installation script for those that want to try out my XMonad desktop.  We will add DTOS repos to Pacman and install the XMonad tiling window manager, the Xmobar panel, the Alacritty terminal, the Fish shell, Doom Emacs and many other essential programs needed to make my dotfiles work correctly.\\n\\n-DT (Derek Taylor, aka DistroTube)" 16 60
+
+    dialog --colors --title "\Z7\ZbStay near your computer!" --yes-label "Continue" --no-label "Exit" --yesno "\Z4This script is not allowed to be run as root, but you will be asked to enter your sudo password at various points during this installation. This is to give PACMAN the necessary permissions to install the software.  So stay near the computer." 8 60
+}
+
+welcome || error "User choose to exit."
+#+end_src
+
+* Asking user to confirm choice to install DTOS.
+#+begin_src bash
+lastchance() { \
+    dialog --colors --title "\Z7\ZbInstalling DTOS!" --msgbox "\Z4WARNING! The DTOS installation script is currently in public beta testing. There are almost certainly errors in it; therefore, it is strongly recommended that you not install this on production machines. It is recommended that you try this out in either a virtual machine or on a test machine." 16 60
+
+    dialog --colors --title "\Z7\ZbAre You Sure You Want To Do This?" --yes-label "Begin Installation" --no-label "Exit" --yesno "\Z4Shall we begin installing DTOS?" 8 60 || { clear; exit 1; }
+}
+
+lastchance || error "User choose to exit."
+#+end_src
+
+* Adding DTOS repo to pacman.conf.
+#+begin_src bash
+addrepo() { \
+    echo "#########################################################"
+    echo "## Adding the DTOS core repository to /etc/pacman.conf ##"
+    echo "#########################################################"
+    grep -qxF "[dtos-core-repo]" /etc/pacman.conf ||
+        (echo "[dtos-core-repo]"; echo "SigLevel = Required DatabaseOptional"; \
+        echo "Server = https://gitlab.com/dwt1/\$repo/-/raw/main/\$arch") | sudo tee -a /etc/pacman.conf
+}
+
+addrepo || error "Error adding DTOS repo to /etc/pacman.conf."
+#+end_src
+
+* Adding keyservers to gpg.conf.
+#+begin_src bash
+addkeyserver() { \
+    echo "#######################################################"
+    echo "## Adding keyservers to /etc/pacman.d/gnupg/gpg.conf ##"
+    echo "#######################################################"
+    grep -qxF "keyserver.ubuntu.com:80" /etc/pacman.d/gnupg/gpg.conf || echo "keyserver hkp://keyserver.ubuntu.com:80" | sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+    grep -qxF "keyserver.ubuntu.com:443" /etc/pacman.d/gnupg/gpg.conf || echo "keyserver hkps://keyserver.ubuntu.com:443" | sudo tee -a /etc/pacman.d/gnupg/gpg.conf
+}
+
+addkeyserver || error "Error adding keyservers to /etc/pacman.d/gnupg/gpg.conf"
+#+end_src
+
+* Receiving the PGP key
+#+begin_src bash
+receive_key() { \
+    local _pgpkey="C71486C31555B12E"
+    echo "#####################################"
+    echo "## Adding PGP key $_pgpkey ##"
+    echo "#####################################"
+    sudo pacman-key --recv-key $_pgpkey
+    sudo pacman-key --lsign-key $_pgpkey
+}
+
+receive_key || error "Error receiving PGP key $_pgpkey"
+#+end_src
+
+* Install the packages from repositories
+All packages listed are either in the standard Arch repos or in the DTOS repos. All of these will be installed using pacman.  The only program that will not be installed through pacman is Doom Emacs, which will be installed later in the script.
+
+=NOTE:= The '--ask 4' option is an undocumented option for pacman that can be found in pacman's source code (in pacman's alpm.h).  Adding this flags means that all questions about removing packages that are conflicts will automatically be answered YES.
+
+#+begin_src bash
+# Let's install each package listed in the pkglist.txt file.
+sudo pacman --needed --ask 4 -Sy - < pkglist.txt
+#+end_src
+
+* Copy configs over from /etc/dtos into $HOME
+While it would be easier to make packages that could install DTOS configs directly to the appropriate places in the $HOME folder, pacman does not allow for this.  Pacman is not allowed to touch $HOME ever!  The better way to do this is to install the configs in /etc/skel which is the standard directory to place such config files, but on many distros (for ex. Manjaro and Arco) /etc/skel is already used to store the distro's own config files.  So to avoid conflicts, all DTOS configs are placed in /etc/dtos and then copied over to $HOME.  A backup of config is created.  BEWARE!
+
+=NOTE:= The /etc/dtos directory contains files and directories that are automatically copied over to a new user's home directory when such user is created by the 'useradd' or the 'adduser' program, depending on your Linux distro.
+#+begin_src bash
+echo "################################################################"
+echo "## Copying DTOS configuration files from /etc/dtos into \$HOME ##"
+echo "################################################################"
+[ ! -d /etc/dtos ] && sudo mkdir /etc/dtos
+[ -d /etc/dtos ] && mkdir ~/dtos-backup-$(date +%Y.%m.%d-%H%M) && cp -Rf /etc/dtos ~/dtos-backup-$(date +%Y.%m.%d-%H%M)
+[ ! -d ~/.config ] && mkdir ~/.config
+[ -d ~/.config ] && mkdir ~/.config-backup-$(date +%Y.%m.%d-%H%M) && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H%M)
+cd /etc/dtos && cp -Rf . ~ && cd -
+#+end_src
+
+#+begin_src bash
+# Change all scripts in .local/bin to be executable.
+find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
+#+end_src
+
+* Install Doom Emacs
+#+begin_src bash
+echo "#########################################################"
+echo "## Installing Doom Emacs. This may take a few minutes. ##"
+echo "#########################################################"
+[ -d ~/.emacs.d ] && mv ~/.emacs.d ~/.emacs.d.bak.$(date +"%Y%m%d_%H%M%S")
+[ -f ~/.emacs ] && mv ~/.emacs ~/.emacs.bak.$(date +"%Y%m%d_%H%M%S")
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+#+end_src
+
+* Copy pacman hooks
+The following pacman hooks force xmonad to recompile every time there are updates to xmonad or the haskell libraries.
+#+begin_src bash
+[ ! -d /etc/pacman.d/hooks ] && sudo mkdir /etc/pacman.d/hooks
+sudo cp /etc/dtos/.xmonad/pacman-hooks/recompile-xmonad.hook /etc/pacman.d/hooks/
+sudo cp /etc/dtos/.xmonad/pacman-hooks/recompile-xmonadh.hook /etc/pacman.d/hooks/
+#+end_src
+
+* Copy dmscripts config and set important variables
++ Set DMBROWSER to 'qutebrowser'
++ Set DMTERM to 'alacritty'
+#+begin_src bash
+[ ! -d $HOME/.config/dmscripts ] && mkdir $HOME/.config/dmscripts
+cp /etc/dmscripts/config $HOME/.config/dmscripts/config
+sed -i 's/DMBROWSER=\"brave\"/DMBROWSER=\"qutebrowser\"/g' $HOME/.config/dmscripts/config
+sed -i 's/DMTERM=\"st -e\"/DMTERM=\"alacritty -e\"/g' $HOME/.config/dmscripts/config
+sed -i 's/setbg_dir=\"${HOME}\/Pictures\/Wallpapers\"/setbg_dir=\"\/usr\/share\/backgrounds\/dtos-backgrounds\"/g' $HOME/.config/dmscripts/config
+#+end_src
+
+* Compiling xmonad
+=NOTE:= May not be needed if moving the pacman hooks works as expected.
+#+begin_src bash
+xmonad_recompile() { \
+    echo "########################"
+    echo "## Recompiling XMonad ##"
+    echo "########################"
+    xmonad --recompile
+}
+
+xmonad_recompile || error "Error recompiling Xmonad!"
+#+end_src
+
+* Compiling the xmonadctl script
+#+begin_src bash
+xmonadctl_compile() { \
+    echo "####################################"
+    echo "## Compiling the xmonadctl script ##"
+    echo "####################################"
+    ghc -dynamic "$HOME"/.xmonad/xmonadctl.hs
+}
+
+xmonadctl_compile || error "Error compiling the xmonadctl script!"
+#+end_src
+
+* Set default USER shell
+#+begin_src bash
+PS3='Set default user shell (enter number): '
+shells=("fish" "bash" "zsh" "quit")
+select choice in "${shells[@]}"; do
+    case $choice in
+         fish | bash | zsh)
+            sudo chsh $USER -s "/bin/$choice" && \
+            echo -e "$choice has been set as your default USER shell. \
+                    \nLogging out is required for this take effect."
+            break
+            ;;
+         quit)
+            echo "User quit without changing shell."
+            break
+            ;;
+         *)
+            echo "invalid option $REPLY"
+            ;;
+    esac
+done
+#+end_src
+
+* Enable SDDM for login manager
+Disable the currently enabled display manager and enable SDDM instead.
+
+#+begin_src bash
+# Disable the current login manager
+sudo systemctl disable $(grep '/usr/s\?bin' /etc/systemd/system/display-manager.service | awk -F / '{print $NF}') || echo "Cannot disable current display manager."
+# Enable sddm as login manager
+sudo systemctl enable sddm
+echo "###################################"
+echo "## Enable sddm as login manager. ##"
+echo "###################################"
+
+## Make multicolor-sddm-theme the default sddm theme
+# Arch uses this config location, I think.
+[ -f "/usr/lib/sddm/sddm.conf.d/default.conf" ] && \
+    sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /usr/lib/sddm/sddm.conf.d/default.conf.backup && \
+    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /usr/lib/sddm/sddm.conf.d/default.conf
+
+# Manjaro KDE uses this config location.
+[ -f "/etc/sddm.conf" ] && \
+    sudo cp /etc/sddm.conf /etc/sddm.conf.backup && \
+    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /etc/sddm.conf
+
+# ArcoLinuxB Awesome uses this config location.
+[ -f "/etc/sddm.conf.d/kde_settings.conf" ] && \
+    sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.backup && \
+    sudo sed -i 's/^Current=*.*/Current=multicolor-sddm-theme/g' /etc/sddm.conf.d/kde_settings.conf
+#+end_src
+
+* Message stating that the installation is complete!
+#+begin_src bash
+echo "##############################"
+echo "## DTOS has been installed! ##"
+echo "##############################"
+
+while true; do
+    read -p "Do you want to reboot to get your dtos? [Y/n] " yn
+    case $yn in
+        [Yy]* ) reboot;;
+        [Nn]* ) break;;
+        "" ) reboot;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+#+end_src
