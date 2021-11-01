@@ -318,6 +318,7 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart")    -- Restarts xmonad
         , ("M-S-q", io exitSuccess)              -- Quits xmonad
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
+		, ("M-<Esc>", spawn "lxsession-logout")
 
     -- KB_GROUP Run Prompt
         , ("M-d", spawn "rofi -show run") -- Rofi
