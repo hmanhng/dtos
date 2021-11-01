@@ -96,12 +96,6 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
-    spawnOnce "picom &"
-    spawnOnce "volumeicon &"
-    spawnOnce "nm-applet &"
-    spawnOnce "blueman-applet &"
-    spawnOnce "redshift &"
-    spawnOnce "caffeine &"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 23 &"
 
@@ -343,7 +337,7 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
-        , ("M-d", spawn "rofi -show run") -- Rofi
+        , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))

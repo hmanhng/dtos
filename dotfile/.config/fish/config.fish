@@ -8,7 +8,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
 set EDITOR "vim"                 # $EDITOR use Emacs in terminal
-set VISUAL "vim"              # $VISUAL use Emacs in GUI mode
+set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -35,6 +35,7 @@ set fish_color_autosuggestion '#7d7d7d'
 set fish_color_command brcyan
 set fish_color_error '#ff6c6b'
 set fish_color_param brcyan
+
 
 ### FUNCTIONS ###
 # Functions needed for !! and !$
@@ -159,10 +160,10 @@ alias unlock='doas rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='doas pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
 # get fastest mirrors
-alias mirror="doas reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="doas reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="doas reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="doas reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -173,6 +174,9 @@ alias fgrep='fgrep --color=auto'
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+alias vifm='./.config/vifm/scripts/vifmrun'
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
+alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 
 # ps
 alias psa="ps auxf"
@@ -221,6 +225,9 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
+
+# bare git repo alias for dotfiles
+alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 # termbin
 alias tb="nc termbin.com 9999"
