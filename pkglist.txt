@@ -34,6 +34,7 @@ pavucontrol
 pulseaudio
 qt5ct
 ripgrep
+rofi
 sxiv
 ttf-iosevka-nerd
 ttf-mononoki
