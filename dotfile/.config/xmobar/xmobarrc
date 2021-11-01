@@ -50,7 +50,7 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=15:antialias=true:h
 						-- Volume
 					, Run Alsa "default" "Master" []
 
-					, Run Brightness [ "-t", "Br: <percent>%", "--", "-D", "intel_backlight" ] 0
+					, Run Brightness [ "-t", "Br: <percent>%", "--", "-D", "intel_backlight" ] 10
 
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
