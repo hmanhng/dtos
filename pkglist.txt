@@ -19,7 +19,6 @@ libxft-bgra
 libinput
 lightdm
 lightdm-gtk-greeter
-lolcat
 lxappearance
 lxsession
 neofetch
@@ -45,8 +44,9 @@ xdg-user-dirs
 xdotool
 xf86-video-intel
 xf86-video-nouveau
-xfce4-power-manager
 xfce4-clipman-plugin
+xfce4-power-manager
+xfce4-screenshooter
 xmonad
 xmonad-contrib
 xmobar

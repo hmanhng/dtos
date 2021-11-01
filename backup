@@ -1,5 +1,3 @@
-#!/bin/sh
-
 echo "Backup config xmonad, xmobar, fish, alacritty"
 
 cp ~/.xmonad/xmonad.hs ./dotfile/.xmonad/

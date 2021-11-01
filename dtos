@@ -2,7 +2,7 @@
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
 # Let's install each package listed in the pkglist.txt file.
-yay --needed --noconfirm -Sy - < pkglist.txt
+yay --needed --noconfirm -Syu - < pkglist.txt
 
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
@@ -11,6 +11,8 @@ cp -rf dotfile/. $HOME/
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
+sudo cp dotfile/.xmonad/pacman-hooks/recompile-xmonad.hook /etc/pacman.d/hooks/
+sudo cp dotfile/.xmonad/pacman-hooks/recompile-xmonadh.hook /etc/pacman.d/hooks/
 
 xmonad_recompile() { \
     echo "########################"
