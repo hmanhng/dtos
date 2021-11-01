@@ -37,7 +37,7 @@ ripgrep
 rofi
 sxiv
 ttf-iosevka-nerd
-ttf-mononoki
+ttf-ubuntu-font-family
 ttf-ms-fonts
 trayer
 gvim
