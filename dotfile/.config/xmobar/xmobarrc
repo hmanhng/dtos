@@ -47,6 +47,10 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=15:antialias=true:h
                     , Run BatteryP ["BAT1"] ["-t", "<acstatus><watts> (<left>%)"] 360
                         -- Time and date
                     , Run Date "<fn=2>\xf017</fn>  %b %d %Y - %H:%M" "date" 50
+						-- Volume
+					, Run Alsa "default" "Master" []
+
+					, Run Brightness [ "-t", "Br: <percent>%", "--", "-D", "intel_backlight" ] 0
 
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
@@ -55,5 +59,5 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=15:antialias=true:h
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=haskell_20.xpm/>  <fc=#666666>|</fc> %UnsafeStdinReader% }{ <fn=1><fc=#51afef>%penguin%  %kernel%</fc>   <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc>   <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc>   <fc=#a9a1e1>%disku%</fc>   <fc=#98be65>%uparrow%  %uptime%</fc>   <fc=#c678dd> %bell%  <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action></fc>    <fc=#da8548>%baticon%  <action=`xfce4-power-manager-settings`>%battery%</action></fc>   <fc=#46d9ff>%date%</fc></fn> %trayerpad%"
+       , template = " <icon=haskell_20.xpm/>  <fc=#666666>|</fc> %UnsafeStdinReader% }{ <fn=1><fc=#b5e4f4>%penguin%  %kernel%</fc>   <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc>   <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc>   <fc=#a9a1e1>%disku%</fc>   <fc=#98be65>%uparrow%  %uptime%</fc>   <fc=#c678dd> %bell%  <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action></fc>    <fc=#ff8e1e>%baticon%  <action=`xfce4-power-manager-settings`>%battery%</action></fc>   <fc=#46d9ff>%date%</fc>   <fc=#FFFAFA>%bright%</fc>   <fc=#e8bbd0><action='pavucontrol'>%alsa:default:Master%</action></fc></fn> %trayerpad%"
        }
