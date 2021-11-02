@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Caffeine
-Exec=caffeine
-RunHook=0
-StartupNotify=false
-Terminal=false
-Hidden=false
-NoDisplay=false

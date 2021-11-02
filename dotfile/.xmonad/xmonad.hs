@@ -13,7 +13,7 @@ import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
 import XMonad.Actions.WindowGo (runOrRaise)
-import XMonad.Actions.WithAll (sinkAll, killAll)
+import XMonad.Actions.WithAll (killAll)
 import qualified XMonad.Actions.Search as S
 
     -- Data
@@ -98,8 +98,8 @@ myStartupHook = do
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 23 &"
 
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    spawnOnce "feh --randomize --bg-fill ~/Pictures/wallpapers/*"  -- feh set random wallpaper
+    spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
+    -- spawnOnce "feh --randomize --bg-fill ~/Pictures/Wallpapers/*"  -- feh set random wallpaper
     -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
     setWMName "LG3D"
 
@@ -179,7 +179,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 5
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
@@ -188,7 +188,7 @@ magnify  = renamed [Replace "magnify"]
            $ subLayout [] (smartBorders Simplest)
            $ magnifier
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 5
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
@@ -196,16 +196,13 @@ monocle  = renamed [Replace "monocle"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 20 Full
-floats   = renamed [Replace "floats"]
-           $ smartBorders
-           $ limitWindows 20 simplestFloat
 grid     = renamed [Replace "grid"]
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 5
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 spirals  = renamed [Replace "spirals"]
@@ -213,33 +210,12 @@ spirals  = renamed [Replace "spirals"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 8
+           $ mySpacing' 5
            $ spiral (6/7)
-threeCol = renamed [Replace "threeCol"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
-           $ ThreeCol 1 (3/100) (1/2)
-threeRow = renamed [Replace "threeRow"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
-           -- Mirror takes a layout and rotates it by 90 degrees.
-           -- So we are applying Mirror to the ThreeCol layout.
-           $ Mirror
-           $ ThreeCol 1 (3/100) (1/2)
 tabs     = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
            $ tabbed shrinkText myTabTheme
-tallAccordion  = renamed [Replace "tallAccordion"]
-           $ Accordion
-wideAccordion  = renamed [Replace "wideAccordion"]
-           $ Mirror Accordion
 
 -- setting colors for tabs layout and tabs sublayout.
 myTabTheme = def { fontName            = myFont
@@ -261,20 +237,15 @@ myShowWNameTheme = def
     }
 
 -- The layout hook
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats
+myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts tall
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
-               myDefaultLayout =     withBorder myBorderWidth tall
+               myDefaultLayout = spirals
+				   	             ||| withBorder myBorderWidth tall
                                  ||| magnify
                                  ||| noBorders monocle
-                                 ||| floats
                                  ||| noBorders tabs
                                  ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
-                                 ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox "]
@@ -294,19 +265,9 @@ myManageHook = composeAll
      , className =? "dialog"          --> doFloat
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
-     , className =? "Gimp"            --> doFloat
-     , className =? "notification"    --> doFloat
-     , className =? "pinentry-gtk-2"  --> doFloat
-     , className =? "splash"          --> doFloat
-     , className =? "toolbar"         --> doFloat
-     , className =? "Yad"             --> doCenterFloat
      , title =? "Oracle VM VirtualBox Manager"  --> doFloat
      , className =? "Google-chrome"     --> doShift ( myWorkspaces !! 1 )
-     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
-     , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
-     , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
-     , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
 
@@ -340,9 +301,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- KB_GROUP Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
-        , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
-        , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
+        , ("M-t", sendMessage (T.Toggle "tall")) -- Toggles my 'floats' layout
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
@@ -363,7 +322,7 @@ myKeys =
         , ("M-S-k", windows W.swapUp)     -- Swap focused window with prev window
         , ("M-<Backspace>", promote)      -- Moves focused window to master, others maintain order
         , ("M-S-<Tab>", rotSlavesDown)    -- Rotate all windows except master and keep focus in place
-        , ("M-C-<Tab>", rotAllDown)       -- Rotate all the windows in the current stack
+        , ("M1-<Tab>", rotAllDown)       -- Rotate all the windows in the current stack
 
     -- KB_GROUP Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
@@ -387,11 +346,6 @@ myKeys =
         , ("M-C-l", sendMessage $ pullGroup R)
         , ("M-C-k", sendMessage $ pullGroup U)
         , ("M-C-j", sendMessage $ pullGroup D)
-        , ("M-C-m", withFocused (sendMessage . MergeAll))
-        -- , ("M-C-u", withFocused (sendMessage . UnMerge))
-        , ("M-C-/", withFocused (sendMessage . UnMergeAll))
-        , ("M-C-.", onGroup W.focusUp')    -- Switch focus to next tab
-        , ("M-C-,", onGroup W.focusDown')  -- Switch focus to prev tab
 
     -- KB_GROUP Scratchpads
     -- Toggle show/hide these programs.  They run on a hidden workspace.

@@ -2,13 +2,14 @@
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
 # Let's install each package listed in the pkglist.txt file.
-yay --needed --noconfirm -Syu - < pkglist.txt
+yay --needed --noconfirm -Syu - < bin/pkglist.txt
 
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
 echo "################################################################"
 cp -rf dotfile/. $HOME/
 sudo cp -r $HOME/etc/* /etc && rm -rf $HOME/etc
+sudo systemctl enable lightdm
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
@@ -33,25 +34,9 @@ xmonadctl_compile() { \
 
 xmonadctl_compile || error "Error compiling the xmonadctl script!"
 
-PS3='Set default user shell (enter number): '
-shells=("fish" "bash" "zsh" "quit")
-select choice in "${shells[@]}"; do
-    case $choice in
-         fish | bash | zsh)
-            sudo chsh $USER -s "/bin/$choice" && \
-            echo -e "$choice has been set as your default USER shell. \
-                    \nLogging out is required for this take effect."
-            break
-            ;;
-         quit)
-            echo "User quit without changing shell."
-            break
-            ;;
-         *)
-            echo "invalid option $REPLY"
-            ;;
-    esac
-done
+sudo chsh $USER -s "/bin/fish" && \
+echo -e "Fish has been set as your default USER shell. \
+        \nLogging out is required for this take effect."
 
 echo "##############################"
 echo "## DTOS has been installed! ##"
