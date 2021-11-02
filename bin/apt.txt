@@ -21,16 +21,15 @@ github-cli
 npm
 clang
 wget
+openssh
 
 fd
 feh
 gnu-netcat
 htop
-fastfetch
 ookla-speedtest-bin
-wireguard-tools
+wireguard-tools openresolv
 ripgrep
-opendoas
 bat
 bluez
 blueman
@@ -44,8 +43,6 @@ gvim
 #ThemesAndFont
 arc-gtk-theme
 papirus-icon-theme
-otf-font-awesome
-ttf-iosevka-nerd
 ttf-ubuntu-font-family
 ttf-ms-fonts
 #noto-fonts 

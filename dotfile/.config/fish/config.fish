@@ -7,8 +7,8 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR "vim"                 # $EDITOR use Emacs in terminal
-set VISUAL "vim"              # $VISUAL use Emacs in GUI mode
+set EDITOR vim                 # $EDITOR use Emacs in terminal
+set VISUAL vim              # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -133,9 +133,15 @@ end
 
 
 ### ALIASES ###
+#vim to vi
+alias vi="vim"
 
 # root privileges
 alias doas="doas --"
+alias suvi="sudoedit"
+alias sucp="doas cp"
+alias sumv="doas mv"
+alias surm="doas rm"
 
 # navigation
 alias ..='cd ..'
@@ -152,7 +158,10 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and yay
-alias pacsyu='doas pacman -Syyu'                 # update only standard pkgs
+alias pac='doas pacman -S'
+alias pacsyu='doas pacman -Syu'                 # update only standard pkgs
+alias pacsyyu='doas pacman -Syyu'
+alias yay='yay -S'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
 alias unlock='doas rm /var/lib/pacman/db.lck'    # remove pacman lock
@@ -223,3 +232,5 @@ alias tofish="doas chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 # termbin
 alias tb="nc termbin.com 9999"
+
+fastfetch

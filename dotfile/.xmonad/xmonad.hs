@@ -95,6 +95,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
+    spawnOnce "alacritty -e unimatrix -l ACgkpe -c blue"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 23 &"
 
@@ -361,11 +362,15 @@ myKeys =
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
 		, ("C-3", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ("<XF86Eject>", spawn "toggleeject")
+		, ("C--", spawn "xbacklight -10")
+		, ("C-=", spawn "xbacklight +10")
 
 	--KB_GROUP Screenshot
-		, ("Print", spawn "xfce4-screenshooter -f")
+		, ("<Print>", spawn "xfce4-screenshooter -f")
 		, ("C-S-y", spawn "xfce4-screenshooter -r")
+		, ("C-S-<Print>", spawn "xfce4-screenshooter -r")
 		, ("M-y", spawn "xfce4-screenshooter -w")
+		, ("M-<Print>", spawn "xfce4-screenshooter -w")
 
         ]
     -- The following lines are needed for named scratchpads.

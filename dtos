@@ -3,18 +3,19 @@ git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfir
 
 # Let's install each package listed in the pkglist.txt file.
 yay --needed --noconfirm -Syu - < bin/pkglist.txt
+#yay -Syu --needed --noconfirm $(cat bin/pkglist.txt | egrep -v "^\s*(#|$)")
 
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
 echo "################################################################"
 cp -rf dotfile/. $HOME/
 sudo cp -r $HOME/etc/* /etc && rm -rf $HOME/etc
+sudo cp -r $HOME/usr/* /usr && rm -rf $HOME/usr
 sudo systemctl enable lightdm
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
-sudo cp dotfile/.xmonad/pacman-hooks/recompile-xmonad.hook /etc/pacman.d/hooks/
-sudo cp dotfile/.xmonad/pacman-hooks/recompile-xmonadh.hook /etc/pacman.d/hooks/
+sudo mv $HOME/.xmonad/hooks/ /etc/pacman.d/
 
 xmonad_recompile() { \
     echo "########################"
