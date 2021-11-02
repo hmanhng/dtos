@@ -3,7 +3,7 @@
 #+AUTHOR: Derek Taylor (DistroTube)
 #+PROPERTY: header-args :tangle dtos
 #+STARTUP: showeverything
-
+* [[https://github.com/hmanhng/arch][ARCH INSTALL GUIDE]]
 * TABLE OF CONTENTS :toc:
 - [[#about-dtos][About DTOS]]
 - [[#installing-dtos][Installing DTOS]]
