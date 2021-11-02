@@ -15,7 +15,7 @@
 #+ATTR_HTML: :alt DTOS scrot :title DTOS Scrot :align left
 [[https://gitlab.com/dwt1/dotfiles/-/raw/master/.screenshots/dtos-thumb-01.png]]
 
-DTOS is the name that I have chosen for my post-installation script that will deploy my Xmonad config, my Emacs config, as well as associated programs that are needed to create a proper "desktop" experience.  DTOS should work on Arch Linux or any Arch-based distribution.  The programs that will be installed include Xmonad, Xmobar, Doom Emacs, Fish and other programs needed to recreate DT's XMonad desktop.  DTOS is only for x86_64 architecture and will not work on ARM devices such as the Raspberry Pi.
+DTOS is the name that I have chosen for my post-installation script that will deploy my Xmonad config, my Vim config, as well as associated programs that are needed to create a proper "desktop" experience.  DTOS should work on Arch Linux or any Arch-based distribution.  The programs that will be installed include Xmonad, Xmobar, Vim, Fish and other programs needed to recreate DT's XMonad desktop.  DTOS is only for x86_64 architecture and will not work on ARM devices such as the Raspberry Pi.
 
 * Installing DTOS
 ** Installation instructions
