@@ -1,0 +1,3 @@
+[submodule "dotfile/usr/share/lightdm-webkit/themes/lightdm-gab-gradient"]
+	path = dotfile/usr/share/lightdm-webkit/themes/lightdm-gab-gradient
+	url = https://github.com/GabrielTenma/lightdm-gab-gradient.git
