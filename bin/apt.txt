@@ -12,6 +12,7 @@ teams
 libreoffice-still-vi
 pcmanfm
 #geany
+engrampa
 
 #Etc
 caffeine-ng

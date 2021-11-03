@@ -91,6 +91,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
+    spawnOnce "picom &"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
     spawnOnce "alacritty -e unimatrix -l knS -c red"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"

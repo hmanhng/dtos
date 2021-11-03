@@ -16,7 +16,9 @@ xmonad
 xmonad-contrib
 xmobar
 
+upd72020x-fw
 pacman-contrib
+picom
 alacritty
 lightdm
 lightdm-webkit2-greeter

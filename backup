@@ -1,6 +1,6 @@
 echo "Backup config xmonad, xmobar, fish, alacritty"
 
-cp ~/.xmonad/xmonad.hs ./dotfile/.xmonad/
-cp ~/.config/xmobar/xmobarrc ./dotfile/.config/xmobar/
-cp ~/.config/fish/config.fish ./dotfile/.config/fish/
-cp ~/.config/alacritty/alacritty.yml ./dotfile/.config/alacritty/
+cp ~/.xmonad/xmonad.hs ./dotfiles/.xmonad/
+cp ~/.config/xmobar/xmobarrc ./dotfiles/.config/xmobar/
+cp ~/.config/fish/config.fish ./dotfiles/.config/fish/
+cp ~/.config/alacritty/alacritty.yml ./dotfiles/.config/alacritty/

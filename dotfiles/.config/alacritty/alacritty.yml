@@ -321,7 +321,7 @@ schemes:
 # *gruvbox-dark
 # *monokai-pro
 # *nord
-colors: *nord
+colors: *monokai-pro
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -357,8 +357,8 @@ colors: *nord
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
-#background_opacity: 0.8
+#background_opacity: 1.0
+background_opacity: 0.8
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
