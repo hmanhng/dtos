@@ -9,7 +9,7 @@ git config --global user.email "hmanhng@icloud.com" #"$email"
 git config --global user.name "hmanhng"  #"$name"
 
 
-cp -r Wallpaper/ ~/Pictures/ #Wallpaper
+cp -r Wallpaper/ $HOME/Pictures/ #Wallpaper
 
 sudo systemctl enable bluetooth
 sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf #Bluetooth alway enable

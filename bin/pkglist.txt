@@ -19,8 +19,9 @@ xmobar
 pacman-contrib
 alacritty
 lightdm
-lightdm-gtk-greeter
+lightdm-webkit2-greeter
 rofi
+xcape
 opendoas
 
 lxappearance

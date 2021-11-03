@@ -7,7 +7,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set EDITOR vim                 # $EDITOR use Emacs in terminal
+set -gx EDITOR vim                 # $EDITOR use Emacs in terminal
 set VISUAL vim              # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
@@ -161,7 +161,6 @@ alias l.='exa -a | egrep "^\."'
 alias pac='doas pacman -S'
 alias pacsyu='doas pacman -Syu'                 # update only standard pkgs
 alias pacsyyu='doas pacman -Syyu'
-alias yay='yay -S'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
 alias unlock='doas rm /var/lib/pacman/db.lck'    # remove pacman lock
