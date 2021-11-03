@@ -38,7 +38,6 @@ trayer
 inetutils
 network-manager-applet
 
-notification-daemon
 reflector
 exa
 fish

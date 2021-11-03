@@ -9,14 +9,22 @@ echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
 echo "################################################################"
 cp -rf dotfile/. $HOME/
-sudo cp -r $HOME/etc/* /etc && rm -rf $HOME/etc
-sudo cp -r $HOME/usr/* /usr && rm -rf $HOME/usr
+sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
+sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
 sudo systemctl enable lightdm
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
 sudo mv $HOME/.xmonad/hooks/ /etc/pacman.d/
 
+
+
+
+
+
+
+
+###########################################################################################################################################
 xmonad_recompile() { \
     echo "########################"
     echo "## Recompiling XMonad ##"

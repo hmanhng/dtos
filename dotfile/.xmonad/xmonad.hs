@@ -92,7 +92,7 @@ myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "lxsession &"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
-    spawnOnce "alacritty -e unimatrix -l ACgkpe -c blue"
+    spawnOnce "alacritty -e unimatrix -l knS -c red"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
 
