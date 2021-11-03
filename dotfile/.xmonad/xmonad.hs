@@ -34,13 +34,9 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
-import XMonad.Layout.Accordion
 import XMonad.Layout.GridVariants (Grid(Grid))
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.Spiral
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
 
     -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
@@ -181,7 +177,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 5
+           $ mySpacing' 5
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
@@ -207,13 +203,6 @@ grid     = renamed [Replace "grid"]
            $ mySpacing 5
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
-spirals  = renamed [Replace "spirals"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 5
-           $ spiral (6/7)
 tabs     = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
@@ -242,8 +231,7 @@ myShowWNameTheme = def
 myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts tall
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
-               myDefaultLayout = spirals
-				   	             ||| withBorder myBorderWidth tall
+               myDefaultLayout = withBorder myBorderWidth tall
                                  ||| magnify
                                  ||| noBorders monocle
                                  ||| noBorders tabs
