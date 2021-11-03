@@ -15,6 +15,7 @@ sudo systemctl enable bluetooth
 sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf #Bluetooth alway enable
 sudo sed -i 's/Logo=1/Logo=0/g' /etc/libreoffice/sofficerc #Disable startup logo
 
+cat bin/bamboo.txt | sudo tee -a /etc/profile
 #Warp
 #sudo systemctl enable warp-svc.service
 #sudo systemctl start warp-svc.service

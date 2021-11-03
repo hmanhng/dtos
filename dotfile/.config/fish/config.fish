@@ -158,7 +158,7 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and yay
-alias pac='doas pacman -S'
+alias pac='doas pacman'
 alias pacsyu='doas pacman -Syu'                 # update only standard pkgs
 alias pacsyyu='doas pacman -Syyu'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)

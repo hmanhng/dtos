@@ -4,8 +4,8 @@
 -- Dependencies: otf-font-awesome ttf-mononoki ttf-ubuntu-font-family trayer
 -- Also depends on scripts from dtos-local-bin from the dtos-core-repo.
 
-Config { font            = "xft:Ubuntu:weight=bold:pixelsize=15:antialias=true:hinting=true"
-       , additionalFonts = [ "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true" 
+Config { font            =   "xft:Iosevka:weight=bold:pixelsize=15:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Ubuntu:weight=bold:pixelsize=15:antialias=true:hinting=true" 
 						   , "xft:Font Awesome 5 Free Solid:pixelsize=12"
 						   , "xft:Font Awesome 5 Brands:pixelsize=12"
 	   					   ]

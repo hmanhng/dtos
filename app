@@ -2,7 +2,6 @@ sh install/app.sh
 sh install/vim.sh
 sh install/config.sh
 
-clear
 echo "You need to reboot to apply"
 #echo -n "Do you want reboot now ? [y/n]: "
 #read choice 
