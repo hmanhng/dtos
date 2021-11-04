@@ -1,14 +1,6 @@
-xorg-xbacklight
-xorg-server
-xorg-xkill
-xorg-xmessage
-xorg-xprop
-xorg-xrdb
-xorg-xset
-xorg-xsetroot
+xorg
 
 xf86-video-intel
-xf86-video-nouveau
 intel-media-driver
 intel-gpu-tools
 
@@ -16,15 +8,12 @@ xmonad
 xmonad-contrib
 xmobar
 
-upd72020x-fw
-pacman-contrib
-picom
 alacritty
+picom
 lightdm
 lightdm-webkit2-greeter
-rofi
+dmenu
 xcape
-opendoas
 
 lxappearance
 lxsession

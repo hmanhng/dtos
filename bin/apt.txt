@@ -1,17 +1,13 @@
 #App
 timeshift
-#gthumb
-#ranger
 vlc
 discord
 qbittorrent
-#notion-app-enhanced
-#google-chrome
+microsoft-edge-stable-bin
 obs-studio
 teams
 libreoffice-still-vi
 pcmanfm
-#geany
 engrampa
 
 #Etc
@@ -26,7 +22,6 @@ openssh
 
 fd
 feh
-gnu-netcat
 htop
 ookla-speedtest-bin
 wireguard-tools openresolv
@@ -39,11 +34,10 @@ xfce4-clipman-plugin
 xfce4-power-manager
 xfce4-screenshooter
 xdg-user-dirs
-gvim
 
 #ThemesAndFont
 arc-gtk-theme
 papirus-icon-theme
 ttf-ubuntu-font-family
-ttf-ms-fonts
+#ttf-ms-fonts
 #noto-fonts 

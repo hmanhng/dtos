@@ -4,7 +4,7 @@
 yay -Sy --needed --noconfirm $(cat bin/apt.txt | egrep -v "^\s*(#|$)")
 
 #Chrome
-git clone https://github.com/hmanhng/chrome.git && cd chrome/ && makepkg -si --noconfirm && cd .. && rm -rf chrome/
+#git clone https://github.com/hmanhng/chrome.git && cd chrome/ && makepkg -si --noconfirm && cd .. && rm -rf chrome/
 
 #Bamboo
 ibus restart

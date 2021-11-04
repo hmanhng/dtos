@@ -273,7 +273,7 @@ myKeys =
 		, ("M-<Esc>", spawn "lxsession-logout")
 
     -- KB_GROUP Run Prompt
-        , ("M1-<F1>", spawn "rofi -show drun") -- Rofi
+        , ("M1-<F1>", spawn "dmenu_run -i -p \"Dmenu: \"")
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))

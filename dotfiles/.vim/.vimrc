@@ -18,8 +18,8 @@ set mouse=a
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
-"set listchars=tab:\|-\ 		" Tab charactor
-"set list
+set listchars=tab:\┇\ 		" Tab charactor
+set list
 set linebreak
 set cursorline
 " Number

@@ -137,11 +137,10 @@ end
 alias vi="vim"
 
 # root privileges
-alias doas="doas --"
 alias suvi="sudoedit"
-alias sucp="doas cp"
-alias sumv="doas mv"
-alias surm="doas rm"
+alias sucp="sudo cp"
+alias sumv="sudo mv"
+alias surm="sudo rm"
 
 # navigation
 alias ..='cd ..'
@@ -158,19 +157,19 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and yay
-alias pac='doas pacman'
-alias pacsyu='doas pacman -Syu'                 # update only standard pkgs
-alias pacsyyu='doas pacman -Syyu'
+alias pac='sudo pacman'
+alias pacsyu='sudo pacman -Syu'                 # update only standard pkgs
+alias pacsyyu='sudo pacman -Syyu'
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
-alias unlock='doas rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias cleanup='doas pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
 # get fastest mirrors
-alias mirror="doas reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="doas reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="doas reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="doas reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -228,9 +227,9 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 # switch between shells
 # I do not recommend switching default SHELL from bash.
-alias tobash="doas chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="doas chsh $USER -s /bin/zsh && echo 'Now log out.'"
-alias tofish="doas chsh $USER -s /bin/fish && echo 'Now log out.'"
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
 # termbin
 alias tb="nc termbin.com 9999"

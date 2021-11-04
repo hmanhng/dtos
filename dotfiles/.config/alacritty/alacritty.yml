@@ -80,7 +80,7 @@ scrolling:
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  #multiplier: 3
+  multiplier: 1
 
   # Scroll to the bottom when new text is written to the terminal.
   #auto_scroll: false
@@ -98,22 +98,22 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: Iosevka Nerd Font
+    family: Iosevka
     style: Regular
 
   # Bold font face
   bold:
-    family: Iosevka Nerd Font
+    family: Iosevka
     style: Bold
 
   # Italic font face
   italic:
-    family: Iosevka Nerd Font
+    family: Iosevka
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Iosevka Nerd Font
+    family: Iosevka Nerd
     style: Bold Italic
 
   # Point size
@@ -376,11 +376,13 @@ background_opacity: 0.8
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
+  # style: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  # unfocused_hollow: true
+  #blinking: Always
+  #blink_interval: 750
 
 # Live config reload (changes require restart)
 #live_config_reload: true

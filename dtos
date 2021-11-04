@@ -1,9 +1,10 @@
 #Yay
+sudo pacman -Syyu
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
 # Let's install each package listed in the pkglist.txt file.
 #yay --needed --noconfirm -Syu - < bin/pkglist.txt
-yay -Syu --needed --noconfirm $(cat bin/pkglist.txt | egrep -v "^\s*(#|$)")
+yay -S --needed --noconfirm $(cat bin/pkglist.txt | egrep -v "^\s*(#|$)")
 
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
