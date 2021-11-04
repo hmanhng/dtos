@@ -188,6 +188,7 @@ alias pscpu='ps auxf | sort -nr -k 3'
 
 # bat
 alias cat="bat"
+alias se='vim (fzf)'
 
 # Merge Xresources
 alias merge='xrdb -merge ~/.Xresources'

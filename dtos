@@ -9,14 +9,16 @@ yay -S --needed --noconfirm $(cat bin/pkglist.txt | egrep -v "^\s*(#|$)")
 echo "################################################################"
 echo "######## Copying DTOS configuration files into \$HOME ##########"
 echo "################################################################"
-cp -rf dotfile/. $HOME/
+cp -rf dotfiles/. $HOME/
 sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
 sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
+sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/
+
 sudo systemctl enable lightdm
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
-sudo mv $HOME/.xmonad/hooks/ /etc/pacman.d/
+sudo mv $HOME/.xmonad/hooks /etc/pacman.d/
 
 
 
@@ -51,13 +53,4 @@ echo -e "Fish has been set as your default USER shell. \
 echo "##############################"
 echo "## DTOS has been installed! ##"
 echo "##############################"
-
-while true; do
-    read -p "Do you want to reboot to get your dtos? [Y/n] " yn
-    case $yn in
-        [Yy]* ) reboot;;
-        [Nn]* ) break;;
-        "" ) reboot;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+./app
