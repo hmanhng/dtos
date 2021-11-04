@@ -12,7 +12,7 @@ alacritty
 picom
 lightdm
 lightdm-webkit2-greeter
-dmenu
+rofi
 xcape
 
 lxappearance
