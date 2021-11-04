@@ -33,8 +33,3 @@ This script can take a long time to complete since it will install more than 300
 #+begin_example
 ParallelDownloads = 5
 #+end_example
-*** Package conflicts that cause the script to fail
-+ shell-color-scripts (from dtos-core-repo) conflicts with shell-color-scripts from the AUR.
-+ dtos-opendoas (from dtos-core-repo) conflicts with opendoas from the Arch repos.
-
-The solution is, before running the script, edit the pkglist.txt file and remove the packages above.
