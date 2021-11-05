@@ -25,17 +25,18 @@ import Data.Tree
 import qualified Data.Map as M
 
     -- Hooks
-import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))     -- send log to xmobar
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
-import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))    -- Automatically manage type programs.dock
-import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)    -- check fullscreen
+import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.ServerMode
-import XMonad.Hooks.SetWMName       -- Sets the WM name
--- import XMonad.Hooks.WorkspaceHistory
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
 import XMonad.Layout.GridVariants (Grid(Grid))
-import XMonad.Layout.ResizableTile      -- change a width/height of window
+-- import XMonad.Layout.SimplestFloat
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 
     -- Layouts modifiers
@@ -45,20 +46,20 @@ import XMonad.Layout.Magnifier
 import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Renamed            -- Modify the description of a layout in a flexible way
-import XMonad.Layout.ShowWName          -- Show the workspace name
+import XMonad.Layout.Renamed
+import XMonad.Layout.ShowWName
 import XMonad.Layout.Simplest
 import XMonad.Layout.Spacing
 import XMonad.Layout.SubLayouts
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))      -- Move and resize windows with the keyboard
+import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
 import XMonad.Layout.WindowNavigation
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
    -- Utilities
 import XMonad.Util.Scratchpad
-import XMonad.Util.NamedScratchpad      -- send name workspace to log
 import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
@@ -81,10 +82,10 @@ myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#282c34"   -- Border color of normal windows
+myNormColor   = "#00e5ff"   -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#46d9ff"   -- Border color of focused windows
+myFocusColor  = "#ff8c00"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -109,9 +110,11 @@ myStartupHook = do
     spawnOnce "alacritty -e unimatrix -l knS -c red"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
-    spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    -- spawnOnce "feh --randomize --bg-fill ~/Pictures/Wallpapers/*"  -- feh set random wallpaper
+
+    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
+    spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
     setWMName "LG3D"
+
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
@@ -212,7 +215,8 @@ myManageHook = composeAll
      , className =? "Google-chrome"     --> doShift ( myWorkspaces !! 1 )
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
      , isFullscreen -->  doFullFloat
-     ]
+     ] <+> namedScratchpadManageHook myScratchPads
+
 -- START_KEYS
 myKeys :: [(String, X ())]
 myKeys =
@@ -223,12 +227,12 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 		, ("M-<Esc>", spawn "lxsession-logout")
 
-    -- KB_GROUP Run Rofi
+    -- KB_GROUP Run Prompt
         , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'window,drun' -modi combi")
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
-        , ("C-<Esc>", namedScratchpadAction myScratchPads "terminal")
+		, ("C-<Esc>", namedScratchpadAction myScratchPads "terminal")
         , ("M-w", spawn (myBrowser))
 		, ("M-e", spawn "pcmanfm")
         , ("M-S-h", spawn (myTerminal ++ " -e htop"))
@@ -244,7 +248,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- KB_GROUP Floating windows
-        , ("M-t", sendMessage (T.Toggle "monocle")) -- Toggles my 'floats' layout
+        , ("M-t", sendMessage (T.Toggle "tall")) -- Toggles my 'floats' layout
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
@@ -286,6 +290,12 @@ myKeys =
         , ("M-C-k", sendMessage $ pullGroup U)
         , ("M-C-j", sendMessage $ pullGroup D)
 
+    -- KB_GROUP Scratchpads
+    -- Toggle show/hide these programs.  They run on a hidden workspace.
+    -- When you toggle them to show, it brings them to your current workspace.
+    -- Toggle them to hide and it sends them back to hidden workspace (NSP).
+    --    , ("M-s t", namedScratchpadAction myScratchPads "terminal")
+
     -- KB_GROUP Multimedia Keys
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
 		, ("C-1", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
@@ -312,7 +322,9 @@ myKeys =
 
 main :: IO ()
 main = do
+    -- Launching three instances of xmobar on their monitors.
     xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
+    -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
         , handleEventHook    = docksEventHook <+> fullscreenEventHook
@@ -324,7 +336,7 @@ main = do
         , borderWidth        = myBorderWidth
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
+        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = hPutStrLn xmproc                         -- xmobar on monitor
               , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace

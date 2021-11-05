@@ -21,6 +21,7 @@ wget
 openssh
 
 fd
+fzf
 feh
 htop
 ookla-speedtest-bin
