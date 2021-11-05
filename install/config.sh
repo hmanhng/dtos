@@ -12,8 +12,6 @@ git config --global user.name "hmanhng"  #"$name"
 ibus restart
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['xkb:us::eng', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
-cp -r Wallpapers $HOME/Pictures/ #Wallpaper
-
 sudo systemctl enable bluetooth
 sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf #Bluetooth alway enable
 sudo sed -i 's/Logo=1/Logo=0/g' /etc/libreoffice/sofficerc #Disable startup logo

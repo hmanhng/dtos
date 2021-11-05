@@ -8,6 +8,8 @@ cp -rf dotfiles/. $HOME/
 sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
 sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
 sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
+sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
+cp $HOME/Pictures/hmanhng.jpg $HOME/.face
 
 sudo systemctl enable lightdm
 
