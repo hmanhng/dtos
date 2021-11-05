@@ -225,16 +225,16 @@ myKeys =
         , ("M-S-r", spawn "xmonad --restart")    -- Restarts xmonad
         , ("M-S-q", io exitSuccess)              -- Quits xmonad
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
-		, ("M-<Esc>", spawn "lxsession-logout")
+        , ("M-<Esc>", spawn "lxsession-logout")
 
     -- KB_GROUP Run Prompt
         , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'window,drun' -modi combi")
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
-		, ("C-<Esc>", namedScratchpadAction myScratchPads "terminal")
+        , ("C-<Esc>", namedScratchpadAction myScratchPads "terminal")
         , ("M-w", spawn (myBrowser))
-		, ("M-e", spawn "pcmanfm")
+        , ("M-e", spawn "pcmanfm")
         , ("M-S-h", spawn (myTerminal ++ " -e htop"))
 
     -- KB_GROUP Kill windows
@@ -248,7 +248,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- KB_GROUP Floating windows
-        , ("M-t", sendMessage (T.Toggle "tall")) -- Toggles my 'floats' layout
+        , ("M-t", sendMessage (T.Toggle "monocle")) -- Toggles my 'floats' layout
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
