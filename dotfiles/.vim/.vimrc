@@ -97,10 +97,10 @@ nnoremap <leader>vs :so $MYVIMRC<cr>
 " add semicolon to end of line w/o losing location
 nnoremap <leader>; mlA;<esc>`l
 nnoremap <ESC><ESC> :silent! nohls<CR>
-nnoremap <Down>  :resize -2<CR>
-nnoremap <Left>  :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
-nnoremap <Up>    :resize +2<CR>
+nnoremap <Down>  :resize +2<CR>
+nnoremap <Left>  :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
+nnoremap <Up>    :resize -2<CR>
 " change pwd to directory of current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <space>r :set relativenumber!<CR>
@@ -179,8 +179,16 @@ source ~/.vim/settings/git.vim
 if has('termguicolors')
 	set termguicolors
 endif
+let g:sonokai_style = 'atlantis'
+let g:sonokai_enable_italic = 1
+let g:sonokai_transparent_background = 1
+let g:sonokai_diagnostic_text_highlight = 1
+let g:sonokai_diagnostic_line_highlight = 1
+let g:sonokai_diagnostic_virtual_text = 'colored'
+let g:sonokai_current_word = 'underline'
+let g:sonokai_better_performance = 1
 
-colorscheme everforest
+colorscheme sonokai
 
 "----------
 "transparent bg
