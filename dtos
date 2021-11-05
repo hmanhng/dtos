@@ -2,13 +2,8 @@
 sudo pacman -Syyu
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
-# Let's install each package listed in the pkglist.txt file.
-#yay --needed --noconfirm -Syu - < bin/pkglist.txt
-yay -S --needed --noconfirm $(cat bin/pkglist.txt | egrep -v "^\s*(#|$)")
+yay -S --needed --noconfirm $(cat bin/pkg | egrep -v "^\s*(#|$)")
 
-echo "################################################################"
-echo "######## Copying DTOS configuration files into \$HOME ##########"
-echo "################################################################"
 cp -rf dotfiles/. $HOME/
 sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
 sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
@@ -19,14 +14,6 @@ sudo systemctl enable lightdm
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
 sudo mv $HOME/.xmonad/hooks /etc/pacman.d/
-
-
-
-
-
-
-
-
 ###########################################################################################################################################
 xmonad_recompile() { \
     echo "########################"
@@ -34,16 +21,13 @@ xmonad_recompile() { \
     echo "########################"
     xmonad --recompile
 }
-
 xmonad_recompile || error "Error recompiling Xmonad!"
-
 xmonadctl_compile() { \
     echo "####################################"
     echo "## Compiling the xmonadctl script ##"
     echo "####################################"
     ghc -dynamic "$HOME"/.xmonad/xmonadctl.hs
 }
-
 xmonadctl_compile || error "Error compiling the xmonadctl script!"
 
 sudo chsh $USER -s "/bin/fish" && \

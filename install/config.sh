@@ -8,6 +8,9 @@ git config --global user.email "hmanhng@icloud.com" #"$email"
 #read name
 git config --global user.name "hmanhng"  #"$name"
 
+#Bamboo
+ibus restart
+env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['xkb:us::eng', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
 cp -r Wallpapers $HOME/Pictures/ #Wallpaper
 
