@@ -13,7 +13,7 @@ import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
 import XMonad.Actions.WindowGo (runOrRaise)
-import XMonad.Actions.WithAll (killAll)
+import XMonad.Actions.WithAll (sinkAll, killAll)
 import qualified XMonad.Actions.Search as S
 
     -- Data
@@ -108,9 +108,10 @@ myStartupHook = do
     spawnOnce "picom &"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
     spawnOnce "alacritty -e unimatrix -l knS -c red"
+    spawnOnce "alacritty -e $HOME/.config/gotop/gotop"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
-
+    spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 5s"
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
     setWMName "LG3D"
@@ -246,9 +247,9 @@ myKeys =
         , ("M-,", prevScreen)  -- Switch focus to prev monitor
         , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
-
     -- KB_GROUP Floating windows
         , ("M-t", sendMessage (T.Toggle "monocle")) -- Toggles my 'floats' layout
+        , ("M-t", sinkAll) 
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing

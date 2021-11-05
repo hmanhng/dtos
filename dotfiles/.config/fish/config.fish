@@ -236,3 +236,5 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 alias tb="nc termbin.com 9999"
 
 fastfetch
+
+alias gotop="$HOME/.config/gotop/gotop"

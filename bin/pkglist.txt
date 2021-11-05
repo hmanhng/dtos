@@ -32,6 +32,7 @@ network-manager-applet
 reflector
 exa
 fish
+nvim
 unimatrix-git
 fastfetch
 

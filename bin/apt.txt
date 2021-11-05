@@ -24,6 +24,7 @@ fd
 fzf
 feh
 htop
+nowater
 ookla-speedtest-bin
 wireguard-tools openresolv
 ripgrep
@@ -40,5 +41,5 @@ xdg-user-dirs
 arc-gtk-theme
 papirus-icon-theme
 ttf-ubuntu-font-family
-#ttf-ms-fonts
+ttf-ms-fonts
 #noto-fonts 
