@@ -1,39 +1,44 @@
 " Plugins{{{
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 call plug#begin('~/.vim/plugged')
 Plug 'tomtom/tcomment_vim'
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'mlaursen/vim-react-snippets'
+Plug 'ryanoasis/vim-devicons' 								" Icon
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+Plug 'sheerun/vim-polyglot'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/jsonc.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+
 Plug 'plasticboy/vim-markdown'
-" Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'ianks/vim-tsx'
-" Plug 'tpope/vim-repeat'
-" Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-" auto completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Search tool for vim
-" Plug 'rking/ag.vim'
-" Edit selected text in new window/tab/region
-Plug 'chrisbra/NrrwRgn'
+
+"{{ File search }}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } 		" Fuzzy finder
+Plug 'junegunn/fzf.vim'
+
+Plug 'scrooloose/nerdcommenter' "comment fast
+
+Plug 'airblade/vim-gitgutter' "show git change
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " auto completion
+
+Plug 'chrisbra/NrrwRgn' " Edit selected text in new window/tab/region
+
+Plug 'voldikss/vim-floaterm'  " Float termina
 " Themes
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'arcticicestudio/nord-vim'
 Plug 'rakr/vim-one'
 Plug 'dylanaraps/wal.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'wadackel/vim-dogrun'
 Plug 'arzg/vim-colors-xcode'
-Plug 'altercation/vim-colors-solarized'
 call plug#end()
 "}}}
 
@@ -41,28 +46,44 @@ call plug#end()
 " enable syntax and plugins (for netrw)
 syntax enable
 syntax on
-filetype plugin on
-filetype indent plugin on
-set omnifunc=syntaxcomplete#Complete
 
+set omnifunc=syntaxcomplete#Complete
+set noshowmode
+set noswapfile
+set confirm
+set encoding=utf-8
+set mouse=a
 let mapleader = ","
+
 set number
-set termguicolors " Enables 24-bit RGB color
-set list
-set expandtab
-set shiftwidth=2
-set softtabstop=2
 set relativenumber
+
+set termguicolors " Enables 24-bit RGB color
+
+set list
+set listchars=tab:\┇\ 		" Tab charactor
+set shiftwidth=4
+set softtabstop=0
+set tabstop=4
+set linebreak
+
 set path+=** " search directories upwards and downwards
-set wildmenu
+set wildmenu " hoàn thành dòng lệnh
+
+set hidden
 set incsearch
+set hlsearch
 set smartcase " automatically switch to case-sensitive when using uppercase
 set ignorecase
-set noswapfile
+
 set cursorline
+
 set lazyredraw " screen will not redraw while executing macros
 set formatoptions+=j " always uses spaces instead of tab characters
+set backspace=indent,eol,start
 set clipboard+=unnamedplus " ALWAYS use the clipboard for ALL operations no need to specify '+' and/or '*' registers 
+
+set scrolloff=999 " allway center
 "}}}
 
 " Remaps {{{
@@ -109,6 +130,9 @@ inoremap ``` ``````<esc>3ha<cr><cr><esc>kS<tab>
 "}}}
 
 " normal maps{{{
+" Map seach in center line
+nnoremap n nzz
+nnoremap N Nzz
 
 " start command with history
 nnoremap ; q:i
@@ -119,7 +143,7 @@ nnoremap <leader>ve :e $MYVIMRC<cr>
 nnoremap <leader>vs :so $MYVIMRC<cr>
 " add semicolon to end of line w/o losing location
 nnoremap <leader>; mlA;<esc>`l
-nnoremap <space><space> :set nohlsearch!<CR>
+nnoremap <ESC><ESC> :silent! nohls<CR>
 nnoremap <Down>  :resize -2<CR>
 nnoremap <Left>  :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
