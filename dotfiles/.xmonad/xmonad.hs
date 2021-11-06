@@ -70,7 +70,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "alacritty"    -- Sets default terminal
+myTerminal = "xfce4-terminal"    -- Sets default terminal
 
 myBrowser :: String
 myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
@@ -93,7 +93,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm]
   where
-    spawnTerm  = myTerminal ++ " -t scratchpad"
+    spawnTerm  = myTerminal ++ " -T scratchpad"
     findTerm   = title =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                where
@@ -249,7 +249,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
     -- KB_GROUP Floating windows
         , ("M-t", sendMessage (T.Toggle "monocle")) -- Toggles my 'floats' layout
-        , ("M-t", sinkAll) 
+        , ("M-S-t", sinkAll) 
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing

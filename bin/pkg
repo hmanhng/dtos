@@ -6,7 +6,7 @@ intel-gpu-tools
 xmonad
 xmonad-contrib
 xmobar
-alacritty
+xfce4-terminal
 picom
 lightdm
 lightdm-webkit2-greeter

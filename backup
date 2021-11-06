@@ -4,3 +4,4 @@ cp ~/.xmonad/xmonad.hs ./dotfiles/.xmonad/
 cp ~/.config/xmobar/xmobarrc ./dotfiles/.config/xmobar/
 cp ~/.config/fish/config.fish ./dotfiles/.config/fish/
 cp ~/.config/alacritty/alacritty.yml ./dotfiles/.config/alacritty/
+cp ~/.config/xfce4/{xfconf,terminal} .dotfiles/.config/xfce4/
