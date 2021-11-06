@@ -107,11 +107,11 @@ myStartupHook = do
     spawnOnce "lxsession &"
     spawnOnce "picom &"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
-    spawnOnce "alacritty -e unimatrix -l knS -c red"
+    spawnOnce "alacritty -e unimatrix -l knS -c blue -s 50"
     spawnOnce "alacritty -e $HOME/.config/gotop/gotop"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
-    spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 5s"
+    spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 30s"
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
     setWMName "LG3D"
