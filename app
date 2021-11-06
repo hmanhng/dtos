@@ -1,5 +1,5 @@
 sh install/app.sh
-sh install/vim.sh
+#sh install/vim.sh
 sh install/config.sh
 
 echo "You need to reboot to apply"

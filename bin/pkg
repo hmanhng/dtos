@@ -1,6 +1,5 @@
 xorg
 xf86-video-intel
-xf86-video-nouveau
 intel-media-driver
 intel-gpu-tools
 xmonad
@@ -12,12 +11,12 @@ lightdm
 lightdm-webkit2-greeter
 rofi
 xcape
+xdotool
 
 #Pkg
 lxappearance
 lxsession
 libinput
-xdotool
 conky
 alsa-utils
 pavucontrol
@@ -71,8 +70,8 @@ timeshift
 vlc
 discord
 qbittorrent
-microsoft-edge-stable-bin
 obs-studio
+firefox
 teams
 libreoffice-still-vi
 pcmanfm

@@ -4,39 +4,4 @@ git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfir
 
 yay -S --needed --noconfirm $(cat bin/pkg | egrep -v "^\s*(#|$)")
 
-cp -rf dotfiles/. $HOME/
-sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
-sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
-sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
-sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
-cp $HOME/Pictures/hmanhng.jpg $HOME/.face
-
-sudo systemctl enable lightdm
-
-# Change all scripts in .local/bin to be executable.
-find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
-sudo mv $HOME/.xmonad/hooks /etc/pacman.d/
-###########################################################################################################################################
-xmonad_recompile() { \
-    echo "########################"
-    echo "## Recompiling XMonad ##"
-    echo "########################"
-    xmonad --recompile
-}
-xmonad_recompile || error "Error recompiling Xmonad!"
-# xmonadctl_compile() { \
-#    echo "####################################"
-#    echo "## Compiling the xmonadctl script ##"
-#    echo "####################################"
-#    ghc -dynamic "$HOME"/.xmonad/xmonadctl.hs
-#}
-#xmonadctl_compile || error "Error compiling the xmonadctl script!"
-
-sudo chsh $USER -s "/bin/fish" && \
-echo -e "Fish has been set as your default USER shell. \
-        \nLogging out is required for this take effect."
-
-echo "##############################"
-echo "## DTOS has been installed! ##"
-echo "##############################"
 ./app
