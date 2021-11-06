@@ -24,13 +24,13 @@ xmonad_recompile() { \
     xmonad --recompile
 }
 xmonad_recompile || error "Error recompiling Xmonad!"
-xmonadctl_compile() { \
-    echo "####################################"
-    echo "## Compiling the xmonadctl script ##"
-    echo "####################################"
-    ghc -dynamic "$HOME"/.xmonad/xmonadctl.hs
-}
-xmonadctl_compile || error "Error compiling the xmonadctl script!"
+# xmonadctl_compile() { \
+#    echo "####################################"
+#    echo "## Compiling the xmonadctl script ##"
+#    echo "####################################"
+#    ghc -dynamic "$HOME"/.xmonad/xmonadctl.hs
+#}
+#xmonadctl_compile || error "Error compiling the xmonadctl script!"
 
 sudo chsh $USER -s "/bin/fish" && \
 echo -e "Fish has been set as your default USER shell. \
