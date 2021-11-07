@@ -1,7 +1,11 @@
+#!/bin/bash
+
 #Yay
 sudo pacman -Syyu
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
 yay -S --needed --noconfirm $(cat bin/pkg | egrep -v "^\s*(#|$)")
 
-./app
+sh install/app.sh
+sh install/vim.sh
+sh install/config.sh

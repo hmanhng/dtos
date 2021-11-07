@@ -5,7 +5,7 @@ intel-gpu-tools
 xmonad
 xmonad-contrib
 xmobar
-xfce4-terminal
+alacritty
 picom
 lightdm
 lightdm-webkit2-greeter
@@ -71,7 +71,7 @@ vlc
 discord
 qbittorrent
 obs-studio
-firefox
+microsoft-edge-stable-bin
 teams
 libreoffice-still-vi
 pcmanfm

@@ -70,7 +70,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "xfce4-terminal"    -- Sets default terminal
+myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
 myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
@@ -93,7 +93,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm]
   where
-    spawnTerm  = myTerminal ++ " -T scratchpad"
+    spawnTerm  = myTerminal ++ " -t scratchpad"
     findTerm   = title =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                where
@@ -107,11 +107,11 @@ myStartupHook = do
     spawnOnce "lxsession &"
     spawnOnce "picom &"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
-    spawnOnce "xfce4-terminal -e 'unimatrix -l knS -c blue -s 50'"
-    spawnOnce "xfce4-terminal -e $HOME/.config/gotop/gotop"
+    spawnOnce "alacritty -e unimatrix -l knS -c blue -s 50"
+    spawnOnce "alacritty -e $HOME/.config/gotop/gotop"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
-    spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 30s"
+    spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 1m"
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
     setWMName "LG3D"
@@ -305,8 +305,8 @@ myKeys =
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
 		, ("C-3", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ("<XF86Eject>", spawn "toggleeject")
-		, ("C--", spawn "xbacklight -10")
-		, ("C-=", spawn "xbacklight +10")
+		, ("C-;", spawn "xbacklight -10")
+		, ("C-'", spawn "xbacklight +10")
 
 	--KB_GROUP Screenshot
 		, ("<Print>", spawn "xfce4-screenshooter -f")

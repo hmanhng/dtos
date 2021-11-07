@@ -1,9 +1,5 @@
-### ADDING TO THE PATH
-# First line removes the path; second line sets it.  Without the first line,
-# your path gets massive and fish becomes very slow.
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
-
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
@@ -11,19 +7,18 @@ set TERM "xterm-256color"                         # Sets the terminal type
 set -gx EDITOR vim                 # $EDITOR use Emacs in terminal
 set VISUAL vim              # $VISUAL use Emacs in GUI mode
 
+###FZF
+set fzf_preview_dir_cmd exa --all --color=always
+set fzf_fd_opts --hidden --exclude=.git
+set -x FZF_DEFAULT_OPTS "--reverse --preview 'bat --color always {}'"
+set -x FZF_DEFAULT_COMMAND 'rg --hidden -l ""'
+
 ### SET MANPAGER
-### "bat" as manpager
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-
-### "vim" as manpager
-#set -x MANPAGER '/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
-
-### "nvim" as manpager
-# set -x MANPAGER "nvim -c 'set ft=man' -"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
-  # fish_default_key_bindings
+  #fish_default_key_bindings
   fish_vi_key_bindings
 end
 ### END OF VI MODE ###
@@ -41,7 +36,7 @@ set fish_color_error '#ff6c6b'
 set fish_color_param brcyan
 
 ### ALIASES ###
-#vim to vi
+# vi is vim
 alias vi="vim"
 
 # root privileges
@@ -58,10 +53,11 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias l='exa --color=always --group-directories-first --icons'
+alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
+alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and yay
@@ -146,4 +142,3 @@ alias tb="nc termbin.com 9999"
 alias gotop="$HOME/.config/gotop/gotop"
 
 ####
-colorscript random

@@ -1,4 +1,4 @@
-#+TITLE: DTOS (Clone of [[https://gitlab.com/dwt1/dtos][DTOS]] with my config)
+#+TITLE: DTOS ( Clone of [[https://gitlab.com/dwt1/dtos][DTOS]] with my config )
 #+DESCRIPTION: A post-installation script to install DT's xmonad desktop on an Arch-based distro.
 #+AUTHOR: Derek Taylor (DistroTube)
 #+PROPERTY: header-args :tangle dtos
