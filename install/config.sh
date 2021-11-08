@@ -22,11 +22,11 @@ cp $HOME/Pictures/hmanhng.jpg $HOME/.face
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
 sudo mv $HOME/.xmonad/hooks /etc/pacman.d/
-
 xmonad --recompile
-sudo chsh $USER -s "/bin/fish" && \
 
+sudo chsh $USER -s "/bin/fish" && \
 
 sudo systemctl enable bluetooth
 sudo systemctl enable lightdm
+
 cat bin/bamboo.txt | sudo tee -a /etc/profile

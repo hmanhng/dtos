@@ -23,8 +23,6 @@ To install DTOS, you need to clone this repository and run the ~dtos~ script.
 #+begin_example
 git clone https://github.com/hmanhng/dtos.git
 cd dtos/
-./dtos
-./app
 #+end_example
 
 ** Potential bugs

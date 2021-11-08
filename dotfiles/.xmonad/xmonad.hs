@@ -135,7 +135,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing' 15
+           $ mySpacing' 10
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
@@ -144,7 +144,7 @@ magnify  = renamed [Replace "magnify"]
            $ subLayout [] (smartBorders Simplest)
            $ magnifier
            $ limitWindows 12
-           $ mySpacing 15
+           $ mySpacing 10
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
@@ -158,7 +158,7 @@ grid     = renamed [Replace "grid"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 15
+           $ mySpacing 10
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 tabs     = renamed [Replace "tabs"]
@@ -180,7 +180,7 @@ myTabTheme = def { fontName            = myFont
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
     { swn_font              = "xft:Iosevka:bold:size=30"
-    , swn_fade              = 0.3
+    , swn_fade              = 0.4
     , swn_bgcolor           = "#1c1f24"
     , swn_color             = "#ffffff"
     }
@@ -229,7 +229,7 @@ myKeys =
         , ("M-<Esc>", spawn "lxsession-logout")
 
     -- KB_GROUP Run Prompt
-        , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'window,drun' -modi combi")
+        , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'window,drun' -modi combi -font 'Reogria 12'")
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))

@@ -109,7 +109,7 @@ font:
 
   # Bold italic font face
   bold_italic:
-    family: Iosevka Nerd
+    family: Iosevka
     style: Bold Italic
 
   # Point size
@@ -135,36 +135,6 @@ draw_bold_text_with_bright_colors: true
 ##      START OF COLOR SCHEMES       ##
 #######################################
 schemes:
-  ### Doom One ###
-  doom-one: &doom-one
-    primary:
-      background: '#282c34'
-      foreground: '#bbc2cf'
-    cursor:
-      text: CellBackground
-      cursor: '#528bff'
-    selection:
-      text: CellForeground
-      background: '#3e4451'
-    normal:
-      black:   '#1c1f24'
-      red:     '#ff6c6b'
-      green:   '#98be65'
-      yellow:  '#da8548'
-      blue:    '#51afef'
-      magenta: '#c678dd'
-      cyan:    '#5699af'
-      white:   '#202328'
-    bright:
-      black:   '#5b6268'
-      red:     '#da8548'
-      green:   '#4db5bd'
-      yellow:  '#ecbe7b'
-      blue:    '#3071db'   # This is 2257a0 in Doom Emacs but I lightened it.
-      magenta: '#a9a1e1'
-      cyan:    '#46d9ff'
-      white:   '#dfdfdf'
-
   ### Dracula ###
   dracula: &dracula
     primary:
@@ -219,37 +189,6 @@ schemes:
       magenta: '#ff46b0'
       cyan:    '#59dffc'
       white:   '#e6e6d1'
-
-  ### Gruvbox dark ###
-  gruvbox-dark: &gruvbox-dark
-    # Default colors
-    primary:
-      # hard contrast: background = '0x1d2021'
-      background: '#282828'
-      # soft contrast: background = '0x32302f'
-      foreground: '#ebdbb2'
-
-    # Normal colors
-    normal:
-      black:   '#282828'
-      red:     '#cc241d'
-      green:   '#98971a'
-      yellow:  '#d79921'
-      blue:    '#458588'
-      magenta: '#b16286'
-      cyan:    '#689d6a'
-      white:   '#a89984'
-
-    # Bright colors
-    bright:
-      black:   '#928374'
-      red:     '#fb4934'
-      green:   '#b8bb26'
-      yellow:  '#fabd2f'
-      blue:    '#83a598'
-      magenta: '#d3869b'
-      cyan:    '#8ec07c'
-      white:   '#ebdbb2'
 
 ### Monokai ###
   monokai-pro: &monokai-pro
@@ -312,9 +251,7 @@ schemes:
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
 # Available themes are:
-# *doom-one
 # *dracula
-# *gruvbox-dark
 # *monokai-pro
 # *nord
 colors: *monokai-pro
@@ -365,20 +302,20 @@ background_opacity: 0.9
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 
-#cursor:
+cursor:
   # Cursor style
-  #
+  style:
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  # style: Block
+    shape: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   # unfocused_hollow: true
-  #blinking: Always
-  #blink_interval: 750
+    blinking: On
+    blink_interval: 100
 
 # Live config reload (changes require restart)
 #live_config_reload: true
