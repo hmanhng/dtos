@@ -7,9 +7,6 @@ set TERM "xterm-256color"                         # Sets the terminal type
 set -gx EDITOR vim                 # $EDITOR use Emacs in terminal
 set VISUAL vim              # $VISUAL use Emacs in GUI mode
 
-###Fiirefox
-set MOZ_USE_XINPUT2 2
-
 ###FZF
 set fzf_preview_dir_cmd exa --all --color=always
 set fzf_fd_opts --hidden --exclude=.git
