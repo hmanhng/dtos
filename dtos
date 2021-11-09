@@ -9,3 +9,5 @@ yay -S --needed --noconfirm $(cat bin/pkg | egrep -v "^\s*(#|$)")
 sh install/app.sh
 sh install/vim.sh
 sh install/config.sh
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
