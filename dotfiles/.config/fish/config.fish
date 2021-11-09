@@ -4,8 +4,8 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-set -gx EDITOR vim                 # $EDITOR use Emacs in terminal
-set VISUAL vim              # $VISUAL use Emacs in GUI mode
+set -gx EDITOR nvim                 # $EDITOR use Emacs in terminal
+set VISUAL nvim              # $VISUAL use Emacs in GUI mode
 
 ###FZF
 set fzf_preview_dir_cmd exa --all --color=always
@@ -36,8 +36,9 @@ set fish_color_error '#ff6c6b'
 set fish_color_param brcyan
 
 ### ALIASES ###
-# vi is vim
-alias vi="vim"
+# vi & vim
+alias vi="nvim"
+alias vim="nvim"
 
 # root privileges
 alias suvi="sudoedit"
@@ -91,7 +92,7 @@ alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 
 # se = vim + fzf
-alias se='vim (fzf)'
+alias se='nvim (fzf)'
 
 # Merge Xresources
 alias merge='xrdb -merge ~/.Xresources'

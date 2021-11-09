@@ -76,7 +76,7 @@ myBrowser :: String
 myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
 
 myEditor :: String
-myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
+myEditor = myTerminal ++ " -e nvim "    -- Sets nvim as editor
 
 myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
