@@ -1,8 +1,9 @@
-"---------- Plug
+" Plug {{{
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
+
 call plug#begin('~/.vim/plugged')
     Plug 'tomtom/tcomment_vim'
 
@@ -27,10 +28,13 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'} " auto completion
 
-" Themes
+" Themes {{{
 Plug 'sainnhe/sonokai'
+" }}}
 call plug#end()
-"----------
+" }}}
+
+" Set {{{
 set omnifunc=syntaxcomplete#Complete
 
 set noshowmode
@@ -82,11 +86,16 @@ set shortmess+=c
 set scrolloff=999
 nnoremap n nzz
 nnoremap N Nzz
+
+set foldmethod=indent
+" }}}
+
 " Remaps {{{
-" command maps{{{
+" Command maps {{{
 cnoremap jk <c-c>
-"}}}
-" normal maps{{{
+" }}}
+
+" Normal maps{{{
 " start command with history
 nnoremap ; q:i
 " start search with history
@@ -126,13 +135,13 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>bq :bp <BAR> bd #<CR>
 "j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j') 
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap Y y$
-"}}}
+" }}}
 
-" insert maps {{{
-" open and close char with empty line {{{
+" Insert maps {{{
+" Open and close char with empty line {{{
 inoremap ii' ''<Esc>i<CR><CR><Esc>k<S-s>
 inoremap ii" ""<Esc>i<CR><CR><Esc>k<S-s>
 inoremap ii( ()<Esc>i<CR><CR><Esc>k<S-s>
@@ -141,41 +150,60 @@ inoremap ii[ []<Esc>i<CR><CR><Esc>k<S-s>
 inoremap ii] []<Esc>i<CR><CR><Esc>k<S-s>
 inoremap ii{ {}<Esc>i<CR><CR><Esc>k<S-s>
 inoremap ii} {}<Esc>i<CR><CR><Esc>k<S-s>
-"}}}
+" }}}
 
-" open and close char{{{
-inoremap <leader>' ''<Esc>i
-inoremap <leader>" ""<Esc>i
-inoremap <leader>( ()<Esc>i
-inoremap <leader>[ []<Esc>i
-inoremap <leader>{ {}<Esc>i
-"}}}
+" Open and close char {{{
+inoremap i' ''<Esc>i
+inoremap i" ""<Esc>i
+inoremap i( ()<Esc>i
+inoremap i[ []<Esc>i
+inoremap i{ {}<Esc>i
+inoremap a' ''<Esc>a
+inoremap a" ""<Esc>a
+inoremap a( ()<Esc>a
+inoremap a[ []<Esc>a
+inoremap a{ {}<Esc>a
+" }}}
 
-inoremap jl <Esc>la
-inoremap jh <Esc>i
-inoremap jj <Esc>A
+" Else {{{
+inoremap ll <Esc>la
+inoremap hh <Esc>i
+inoremap jj <Esc>ja
+inoremap kk <Esc>ka
+inoremap ju <Esc>ua
+inoremap ja <Esc>A
 inoremap jx <Esc>lxi
-inoremap jk <Esc>
-inoremap jn <Esc>o
+inoremap jo <Esc>o
+inoremap jO <Esc>O
 inoremap <leader>dd <Esc>ddi
-inoremap <leader>> <esc>>>a
-inoremap <leader>< <esc><<a
+inoremap <leader>> <Esc>>>a
+inoremap <leader>< <Esc><<a
 "auto close tag
 inoremap <leader>ct </<Esc>2F<lyiwf/pa><Esc>F<i
 "auto close tag with empty line
 inoremap <leader>cst </<Esc>2F<lyiwf/pa><Esc>F<i<CR><CR><Esc>kS
 "markdown code - puts cursor in middle of ```
 inoremap ``` ``````<esc>3ha<cr><cr><esc>kS<tab>
-"}}}
+" }}}
+" }}}
+" }}}
 
-"----------settings
+" Vimscript file settings folding {{{
+augroup filtetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Settings {{{
 source ~/.vim/settings/coc.vim
 source ~/.vim/settings/fzf.vim
 source ~/.vim/settings/airline.vim
 source ~/.vim/settings/nerdtree.vim
 source ~/.vim/settings/git.vim
+" }}}
 
-"---------- Theme
+" Theme {{{
 if has('termguicolors')
 	set termguicolors
 endif
@@ -189,12 +217,14 @@ let g:sonokai_current_word = 'underline'
 let g:sonokai_better_performance = 1
 
 colorscheme sonokai
+" }}}
 
-"----------
-"transparent bg
+" Transparent bg {{{
 hi Normal guibg=NONE ctermbg=NONE
+" }}}
 
-"change cursor mode i
+" Change cursor mode i {{{
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+" }}}
