@@ -1,4 +1,4 @@
-map <silent> <C-]> :NERDTreeToggle<CR>
+map <silent> <C-\> :NERDTreeToggle<CR>
 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeShowHidden=1

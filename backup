@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "Backup config xmonad, xmobar, fish, alacritty"
+echo "Backup config xmonad, xmobar, fish, alacritty, neovim"
 
 cp ~/.xmonad/xmonad.hs ./dotfiles/.xmonad/
 cp ~/.config/xmobar/xmobarrc ./dotfiles/.config/xmobar/
-cp -r ~/.config/fish ./dotfiles/.config/
+cp -r ~/.config/fish/ ./dotfiles/.config/
 cp ~/.config/alacritty/alacritty.yml ./dotfiles/.config/alacritty/
-# cp ~/.config/xfce4/xfconf .dotfiles/.config/xfce4/
+cp -r ~/.config/nvim/ ./dotfiles/.config/

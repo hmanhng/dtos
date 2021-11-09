@@ -142,3 +142,4 @@ alias tb="nc termbin.com 9999"
 alias gotop="$HOME/.config/gotop/gotop"
 
 ####
+starship init fish | source

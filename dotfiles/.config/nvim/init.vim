@@ -8,6 +8,8 @@ call plug#begin('~/.vim/plugged')
 
     "{{ The Basics }}
     Plug 'itchyny/lightline.vim'                        " Lightline statusbar
+    Plug 'mengelbrecht/lightline-bufferline'
+
     Plug 'frazrepo/vim-rainbow'
     Plug 'scrooloose/nerdcommenter' " comment fast
     "{{ File management }}
@@ -15,6 +17,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " Highlighting Nerdtree
     Plug 'ryanoasis/vim-devicons'                       " Icons for Nerdtree
+    "{{ Git }}"
+    Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter' " show git change
     "{{ Tim Pope Plugins }}
     Plug 'tpope/vim-surround'                           " Change surrounding marks
