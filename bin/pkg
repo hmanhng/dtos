@@ -5,38 +5,33 @@ intel-gpu-tools
 xmonad
 xmonad-contrib
 xmobar
+trayer
 alacritty
-picom
+fish
 lightdm
 lightdm-webkit2-greeter
+
+#Pkg
+picom
 rofi
 xcape
 xdotool
-
-#Pkg
+xclip
 inetutils
 lxappearance
 lxsession
 libinput
-network-manager-applet
-trayer
 exa
-fish
 fd
 fzf
 ripgrep
 bat
 wireguard-tools openresolv
-bluez
-blueman
-xclip
 openssh
 wget
-
-alsa-utils
-pavucontrol
-pulseaudio
-pulseaudio-alsa
+bluez blueman
+network-manager-applet
+alsa-utils pavucontrol pulseaudio pulseaudio-alsa
 
 conky
 reflector
@@ -47,13 +42,10 @@ redshift
 ibus ibus-bamboo
 npm
 clang
-feh
+feh nowater
 htop
-nowater
 ookla-speedtest-bin
-xfce4-clipman-plugin
-xfce4-power-manager
-xfce4-screenshooter
+xfce4-clipman-plugin xfce4-power-manager xfce4-screenshooter
 xdg-user-dirs
 
 #ThemesAndFont
