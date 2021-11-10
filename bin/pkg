@@ -20,24 +20,25 @@ xdotool
 xclip
 pacman-contrib
 inetutils
-lxappearance
-lxsession
+lxappearance lxsession
 libinput
 exa
 fd
 fzf
 ripgrep
 bat
-wireguard-tools openresolv
 openssh
 wget
 bluez blueman
 network-manager-applet
 alsa-utils pavucontrol pulseaudio pulseaudio-alsa
+xdg-user-dirs
+wireguard-tools openresolv
 
 conky
 reflector
 unimatrix-git
+htop
 fastfetch
 caffeine-ng
 redshift
@@ -45,10 +46,8 @@ ibus ibus-bamboo
 npm
 clang
 feh nowater
-htop
 ookla-speedtest-bin
 xfce4-clipman-plugin xfce4-power-manager xfce4-screenshooter
-xdg-user-dirs
 
 #ThemesAndFont
 arc-gtk-theme
