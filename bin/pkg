@@ -18,6 +18,7 @@ starship
 xcape
 xdotool
 xclip
+pacman-contrib
 inetutils
 lxappearance
 lxsession
