@@ -13,24 +13,24 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   #dimensions:
-  #  columns: 0
-  #  lines: 0
+    #columns: 0
+    #lines: 0
 
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
+  position:
+    x: 100
+    y: 70
 
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 2
-    #y: 6
+    x: 3
+   #y: 6
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -48,7 +48,7 @@ window:
   #   - Windowed
   #   - Maximized
   #   - Fullscreen
-  #startup_mode: Fullscreen
+  #startup_mode: Windowed
 
   # Window title
   title: Alacritty
@@ -64,7 +64,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  # gtk_theme_variant: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -91,22 +91,22 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: Iosevka
+    family: Iosevka Term
     style: Regular
 
   # Bold font face
   bold:
-    family: Iosevka
+    family: Iosevka Term
     style: Bold
 
   # Italic font face
   italic:
-    family: Iosevka
+    family: Iosevka Term
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Iosevka
+    family: Iosevka Term
     style: Bold Italic
 
   # Point size
@@ -116,21 +116,19 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 1
+    y: 2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   #glyph_offset:
-  #  x: 0
-  #  y: 0
+    #x: 0
+    #y: 0
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-#######################################
-##      START OF COLOR SCHEMES       ##
-#######################################
+##      START OF COLOR SCHEMES
 schemes:
   ### Dracula ###
   dracula: &dracula
@@ -244,18 +242,12 @@ schemes:
       magenta: '#B48EAD'
       cyan:    '#8FBCBB'
       white:   '#ECEFF4'
-######################################################################
-## SET THEME: Choose ONE color scheme from those in the above list. ##
-## ###################################################################
 # Available themes are:
 # *dracula
 # *monokai-pro
 # *nord
 colors: *monokai-pro
 
-#######################################
-##       END OF COLOR SCHEMES        ##
-#######################################
 
 # Visual Bell
 #

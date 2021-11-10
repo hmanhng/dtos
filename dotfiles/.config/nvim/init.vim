@@ -217,4 +217,6 @@ let g:edge_diagnostic_virtual_text = 'colored'
 let g:edge_current_word = 'underline'
 let g:edge_better_performance = 1
 colorscheme edge
+hi CursorLineNr guifg=#DC74FB
+
 "}}}

@@ -3,6 +3,7 @@ let g:lightline#bufferline#show_number = 2
 let g:lightline#bufferline#enable_devicons = 1 
 let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#clickable = 1
+let g:lightline#bufferline#modified = ''
 
 let g:lightline = {
       \ 'component': {
@@ -17,21 +18,21 @@ let g:lightline = {
 	  \   'gitbranch': 'FugitiveHead'
 	  \ },
       \ }
-let g:lightline.colorscheme = 'darcula'
+let g:lightline.colorscheme = 'edge'
 
 let g:lightline.tabline = {
                           \ 'left':  [ [ 'vim_logo', 'buffers' ] ],
                           \ 'right': []
                           \ }
+
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline.component_raw = {'buffers': 1}
 
 let g:lightline#bufferline#composed_number_map = {
-\ 1:  '⑴ ', 2:  '⑵ ', 3:  '⑶ ', 4:  '⑷ ', 5:  '⑸ ',
-\ 6:  '⑹ ', 7:  '⑺ ', 8:  '⑻ ', 9:  '⑼ ', 10: '⑽ ',
-\ 11: '⑾ ', 12: '⑿ ', 13: '⒀ ', 14: '⒁ ', 15: '⒂ ',
-\ 16: '⒃ ', 17: '⒄ ', 18: '⒅ ', 19: '⒆ ', 20: '⒇ '}
+     \ 0: '0.', 1: '1.', 2: '2.', 3: '3.', 4: '4.',
+     \ 5: '5.', 6: '6.', 7: '7.', 8: '8.', 9: '9.'}
+
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)

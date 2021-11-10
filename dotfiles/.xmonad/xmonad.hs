@@ -82,10 +82,10 @@ myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#00e5ff"   -- Border color of normal windows
+myNormColor   = "#9308FF"   -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#ff8c00"   -- Border color of focused windows
+myFocusColor  = "#B0C2D7"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -110,7 +110,7 @@ myStartupHook = do
     spawnOnce "alacritty -e unimatrix -l knS -c blue -s 50"
     spawnOnce "alacritty -e $HOME/.config/gotop/gotop"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
+    spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 24 &"
     spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 1m"
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
@@ -135,7 +135,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing' 10
+           $ mySpacing' 15
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ smartBorders
@@ -144,7 +144,7 @@ magnify  = renamed [Replace "magnify"]
            $ subLayout [] (smartBorders Simplest)
            $ magnifier
            $ limitWindows 12
-           $ mySpacing 10
+           $ mySpacing 15
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
@@ -158,7 +158,7 @@ grid     = renamed [Replace "grid"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 10
+           $ mySpacing 15
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 tabs     = renamed [Replace "tabs"]
