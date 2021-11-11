@@ -98,6 +98,7 @@ alias se='nvim (fzf)'
 alias merge='xrdb -merge ~/.Xresources'
 
 # git
+alias add='git add'
 alias addup='git add -u'
 alias addall='git add .'
 alias branch='git branch'
