@@ -32,50 +32,38 @@ call plug#begin('~/.vim/plugged')
 call plug#end() "}}}
 
 " => General Settings {{{
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
-
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
 set nocompatible                " be iMproved, required
 filetype off                    " required
 
-set path+=**					" Searches current directory recursively.
-set wildmenu					" Display all matches when tab complete.
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch                   " Incremental search
-
-set noshowmode                  " Uncomment to prevent non-normal modes showing in powerline and below powerline.
-set hidden                      " Needed to keep multiple buffers open
-set nobackup                    " No auto backups
-set nowritebackup
-
-set confirm
-set linebreak
-set cursorline
-set noswapfile                  " No swap
-set t_Co=256                    " Set if term supports 256 colors.
-set termguicolors
-set number relativenumber       " Display line numbers
-set clipboard=unnamedplus       " Copy/paste between vim and other programs.
+filetype plugin indent on    " required
 syntax on
-let g:rehash256 = 1
-set laststatus=2                " Always show statusline
-
-" Text, tab and indent related
+set termguicolors t_Co=256                    " Set if term supports 256 colors.
 set expandtab                   " Use spaces instead of tabs.
-set smarttab                    " Be smart using tabs ;)
 set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
+set list listchars=tab:>-,trail:~,extends:>,precedes:<
+
+set foldmethod=indent
+set foldnestmax=10
+set foldlevel=2
+
+set path+=**                    " Searches current directory recursively.
+
+set ignorecase smartcase        " Ignore search case
+
+set noshowmode                  " Uncomment to prevent non-normal modes showing in powerline and below powerline.
+set nobackup nowritebackup
+set noswapfile                  " No swap
+
+set confirm
+
+set linebreak
+set cursorline
+set number relativenumber        " Display line numbers
+set clipboard+=unnamedplus       " Copy/paste between vim and other programs.
+set laststatus=2                 " Always show statusline
 
 " Mouse Scrolling
-set mouse=nicr
 set mouse=a
 
 " Map seach in center line
@@ -90,7 +78,7 @@ set updatetime=750
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set fillchars+=vert:\   " Removes pipes
+set fillchars+=vert:\           " Removes pipes
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"     
 "}}}
 
@@ -192,31 +180,18 @@ inoremap ``` ``````<esc>3ha<cr><cr><esc>kS<tab>
 " }}}
 " }}}
 
+" Vimscript file settings folding {{{
+augroup filtetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker foldlevel=0
+augroup END
+" }}}
+
 " Settings {{{
 source ~/.config/nvim/coc.vim
 source ~/.config/nvim/fzf.vim
+source ~/.config/nvim/mycolor.vim
 source ~/.config/nvim/lightline.vim
 source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/git.vim
 " }}}
-
-" Vimscript file settings folding {{{
-augroup filtetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
-
-" Colorscheme {{{
-"hi Normal guibg=NONE ctermbg=NONE
-"let g:edge_transparent_background = 1
-let g:edge_menu_selection_background = 'purple'
-let g:edge_diagnostic_text_highlight = 1
-let g:edge_diagnostic_line_highlight = 1
-let g:edge_diagnostic_virtual_text = 'colored'
-let g:edge_current_word = 'underline'
-let g:edge_better_performance = 1
-colorscheme edge
-hi CursorLineNr guifg=#DC74FB
-
-"}}}

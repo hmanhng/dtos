@@ -76,7 +76,7 @@ scrolling:
   multiplier: 1
 
   # Scroll to the bottom when new text is written to the terminal.
-  #auto_scroll: false
+  auto_scroll: true
 
 # Spaces per Tab (changes require restart)
 #
@@ -280,7 +280,7 @@ colors: *monokai-pro
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 #background_opacity: 1.0
-background_opacity: 0.9
+background_opacity: 0.93
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

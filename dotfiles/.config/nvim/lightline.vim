@@ -4,21 +4,20 @@ let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#clickable = 1
 let g:lightline#bufferline#modified = ''
-
 let g:lightline = {
       \ 'component': {
       \   'vim_logo': "",
       \   'lineinfo': "%3l:%-2c/%3{line('$')}",
       \ },
       \ 'active': {
-	  \   'left': [ [ 'mode', 'paste' ],
-	  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-	  \ },
-	  \ 'component_function': {
-	  \   'gitbranch': 'FugitiveHead'
-	  \ },
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
       \ }
-let g:lightline.colorscheme = 'edge'
+let g:lightline.colorscheme = 'mycolor'
 
 let g:lightline.tabline = {
                           \ 'left':  [ [ 'vim_logo', 'buffers' ] ],
@@ -32,6 +31,13 @@ let g:lightline.component_raw = {'buffers': 1}
 let g:lightline#bufferline#composed_number_map = {
      \ 0: '0.', 1: '1.', 2: '2.', 3: '3.', 4: '4.',
      \ 5: '5.', 6: '6.', 7: '7.', 8: '8.', 9: '9.'}
+
+" Lightline
+"hi LightlineMiddle_active ctermbg=9
+"hi LightlineRight_active_1 ctermbg=9
+"hi LightlineRight_active_2 ctermbg=9
+"hi LightlineLeft_active_1 ctermbg=9
+
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
