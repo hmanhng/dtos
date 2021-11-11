@@ -113,7 +113,6 @@ myStartupHook = do
     spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 24 &"
     spawnOnce "nowater -d ~/Pictures/Wallpapers/ -t 1m"
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpaper"  -- feh set random wallpaper
     setWMName "LG3D"
 
 
