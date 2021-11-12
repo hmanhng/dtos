@@ -9,7 +9,7 @@ let g:edge_better_performance = 1
 
 colorscheme edge
 hi LineNr guifg=#ADADAD
-hi CursorLineNr guifg=#F6A66F
+hi CursorLineNr guifg=#F6A66F guibg=#4B4B4B
 hi CursorLine guibg=#4B4B4B
 
 "}}}
