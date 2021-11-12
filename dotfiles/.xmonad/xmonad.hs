@@ -115,7 +115,7 @@ myNormColor :: String
 myNormColor   = "#B0C2D7"   -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#9308FF"   -- Border color of focused windows
+myFocusColor  = "#FEC85E"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset

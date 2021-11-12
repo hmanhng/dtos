@@ -4,13 +4,12 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 call plug#begin('~/.vim/plugged')
+    "{{ Theme }}}
     Plug 'sainnhe/edge'
-
     "{{ The Basics }}
     Plug 'itchyny/lightline.vim'                        " Lightline statusbar
     Plug 'mengelbrecht/lightline-bufferline'
-
-    Plug 'frazrepo/vim-rainbow'
+    Plug 'andymass/vim-matchup'
     Plug 'scrooloose/nerdcommenter' " comment fast
     "{{ File management }}
     Plug 'scrooloose/nerdtree'                          " Nerdtree
@@ -20,8 +19,6 @@ call plug#begin('~/.vim/plugged')
     "{{ Git }}"
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter' " show git change
-    "{{ Tim Pope Plugins }}
-    Plug 'tpope/vim-surround'                           " Change surrounding marks
     "{{ Syntax Highlighting and Colors }}
     Plug 'sheerun/vim-polyglot'
     "{{ Complention }}
