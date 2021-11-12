@@ -57,11 +57,41 @@ import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(T
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
    -- Utilities
-import XMonad.Util.Scratchpad
 import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
+
+main :: IO ()
+main = do
+    -- Launching three instances of xmobar on their monitors.
+    xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
+    -- the xmonad, ya know...what the WM is named after!
+    xmonad $ ewmh def
+        { manageHook         = myManageHook <+> manageDocks
+        , handleEventHook    = docksEventHook <+> fullscreenEventHook
+        , modMask            = myModMask
+        , terminal           = myTerminal
+        , startupHook        = myStartupHook
+        , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
+        , workspaces         = myWorkspaces
+        , borderWidth        = myBorderWidth
+        , normalBorderColor  = myNormColor
+        , focusedBorderColor = myFocusColor
+        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+              -- the following variables beginning with 'pp' are settings for xmobar.
+              { ppOutput = hPutStrLn xmproc                         -- xmobar on monitor
+              , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
+              , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
+              , ppHidden = xmobarColor "#82AAFF" "" . wrap "<box type=Top width=2 mt=2 color=#82AAFF>" "</box>" . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
+              , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
+              , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
+              , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
+              , ppExtras  = [windowCount]                                     -- # of windows current workspace
+              , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]                    -- order of things in xmobar
+              }
+        } `additionalKeysP` myKeys
 
 myFont :: String
 myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=12:antialias=true:hinting=true"
@@ -78,14 +108,14 @@ myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim "    -- Sets nvim as editor
 
---myBorderWidth :: Dimension
---myBorderWidth = 2           -- Sets border width for windows
+myBorderWidth :: Dimension
+myBorderWidth = 2           -- Sets border width for windows
 
---myNormColor :: String
---myNormColor   = "#B0C2D7"   -- Border color of normal windows
+myNormColor :: String
+myNormColor   = "#B0C2D7"   -- Border color of normal windows
 
---myFocusColor :: String
---myFocusColor  = "#9308FF"   -- Border color of focused windows
+myFocusColor :: String
+myFocusColor  = "#9308FF"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -291,63 +321,26 @@ myKeys =
         , ("M-C-k", sendMessage $ pullGroup U)
         , ("M-C-j", sendMessage $ pullGroup D)
 
-    -- KB_GROUP Scratchpads
-    -- Toggle show/hide these programs.  They run on a hidden workspace.
-    -- When you toggle them to show, it brings them to your current workspace.
-    -- Toggle them to hide and it sends them back to hidden workspace (NSP).
-    --    , ("M-s t", namedScratchpadAction myScratchPads "terminal")
-
     -- KB_GROUP Multimedia Keys
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-		, ("C-1", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+        , ("C-1", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
         , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-		, ("C-2", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        , ("C-2", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-		, ("C-3", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        , ("C-3", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
         , ("<XF86Eject>", spawn "toggleeject")
-		, ("C-;", spawn "xbacklight -10")
-		, ("C-'", spawn "xbacklight +10")
+        , ("C-;", spawn "xbacklight -10")
+        , ("C-'", spawn "xbacklight +10")
 
 	--KB_GROUP Screenshot
-		, ("<Print>", spawn "xfce4-screenshooter -f")
-		, ("C-S-y", spawn "xfce4-screenshooter -r")
-		, ("C-S-<Print>", spawn "xfce4-screenshooter -r")
-		, ("M-y", spawn "xfce4-screenshooter -w")
-		, ("M-<Print>", spawn "xfce4-screenshooter -w")
+        , ("<Print>", spawn "xfce4-screenshooter -f")
+        , ("C-S-y", spawn "xfce4-screenshooter -r")
+        , ("C-S-<Print>", spawn "xfce4-screenshooter -r")
+        , ("M-y", spawn "xfce4-screenshooter -w")
+        , ("M-<Print>", spawn "xfce4-screenshooter -w")
 
         ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
                 nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
 -- END_KEYS
-
-main :: IO ()
-main = do
-    -- Launching three instances of xmobar on their monitors.
-    xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
-    -- the xmonad, ya know...what the WM is named after!
-    xmonad $ ewmh def
-        { manageHook         = myManageHook <+> manageDocks
-        , handleEventHook    = docksEventHook <+> fullscreenEventHook
-        , modMask            = myModMask
-        , terminal           = myTerminal
-        , startupHook        = myStartupHook
-        , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
-        , workspaces         = myWorkspaces
-        --, borderWidth        = myBorderWidth
-        --, normalBorderColor  = myNormColor
-        --, focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-              -- the following variables beginning with 'pp' are settings for xmobar.
-              { ppOutput = hPutStrLn xmproc                         -- xmobar on monitor
-              , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
-              , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "#82AAFF" "" . wrap "<box type=Top width=2 mt=2 color=#82AAFF>" "</box>" . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
-              , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
-              , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
-              , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
-              , ppExtras  = [windowCount]                                     -- # of windows current workspace
-              , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]                    -- order of things in xmobar
-              }
-        } `additionalKeysP` myKeys
