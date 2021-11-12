@@ -78,14 +78,14 @@ myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim "    -- Sets nvim as editor
 
-myBorderWidth :: Dimension
-myBorderWidth = 2           -- Sets border width for windows
+--myBorderWidth :: Dimension
+--myBorderWidth = 2           -- Sets border width for windows
 
-myNormColor :: String
-myNormColor   = "#9308FF"   -- Border color of normal windows
+--myNormColor :: String
+--myNormColor   = "#B0C2D7"   -- Border color of normal windows
 
-myFocusColor :: String
-myFocusColor  = "#B0C2D7"   -- Border color of focused windows
+--myFocusColor :: String
+--myFocusColor  = "#9308FF"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -188,11 +188,11 @@ myShowWNameTheme = def
 myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts monocle
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
-               myDefaultLayout = withBorder myBorderWidth tall
+               myDefaultLayout = noBorders tall --withBorder myBorderWidth tall
                                  ||| magnify
                                  ||| noBorders monocle
                                  ||| noBorders tabs
-                                 ||| grid
+                                 ||| noBorders grid
 
 myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -212,7 +212,8 @@ myManageHook = composeAll
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
      , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-     , className =? "Google-chrome"     --> doShift ( myWorkspaces !! 1 )
+     , className =? "Microsoft-edge"   --> doShift ( myWorkspaces !! 1 )
+     , className =? "Google-chrome"    --> doShift ( myWorkspaces !! 1 )
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
      , isFullscreen -->  doFullFloat
      ] <+> namedScratchpadManageHook myScratchPads
@@ -333,9 +334,9 @@ main = do
         , startupHook        = myStartupHook
         , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
         , workspaces         = myWorkspaces
-        , borderWidth        = myBorderWidth
-        , normalBorderColor  = myNormColor
-        , focusedBorderColor = myFocusColor
+        --, borderWidth        = myBorderWidth
+        --, normalBorderColor  = myNormColor
+        --, focusedBorderColor = myFocusColor
         , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = hPutStrLn xmproc                         -- xmobar on monitor
