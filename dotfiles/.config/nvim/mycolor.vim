@@ -1,28 +1,35 @@
 " Colorscheme {{{
-let g:edge_transparent_background = 1
-let g:edge_menu_selection_background = 'purple'
-let g:edge_diagnostic_text_highlight = 1
-let g:edge_diagnostic_line_highlight = 1
-let g:edge_diagnostic_virtual_text = 'colored'
-let g:edge_current_word = 'underline'
-let g:edge_better_performance = 1
+set background=dark
+"let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_visual = 'grey background' "`'grey background'`, `'green background'`, `'blue background'`, `'red background'`, `'reverse'`
+let g:gruvbox_material_menu_selection_background = 'aqua'
+let g:gruvbox_material_ui_contrast = 'high'
+"let g:gruvbox_material_diagnostic_text_highlight = 1
+"let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_diagnostic_virtual_text = 'colored'
+let g:gruvbox_material_statusline_style = 'mix'
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_palette = 'mix'
 
-colorscheme edge
+colorscheme gruvbox-material
 hi LineNr guifg=#ADADAD
 hi CursorLineNr guifg=#F6A66F guibg=#4B4B4B
 hi CursorLine guibg=#4B4B4B
-
+hi MatchParen guibg=#d4be98
 "}}}
 
 " Lightline {{{
 let s:black = [ '#2b2b2b', 235 ]
 let s:gray = [ '#323232', 236 ]
 let s:white = [ '#a9b7c6', 250 ]
-let s:blue = [ '#6897bb' , 67 ] 
-let s:green = [ '#629755', 71 ] 
-let s:purple = [ '#9876aa', 104 ]
+let s:blue = [ '#7daea3' , 109 ] 
+let s:green = [ '#a9b665', 142 ] 
+let s:purple = [ '#d3869b', 175 ]
 let s:red = [ '#ff6b68', 204 ]
-let s:yellow = [ '#ffc66d', 222 ]
+let s:yellow = [ '#ea6962', 167 ]
 let s:none = [ 'NONE', 9 ]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}

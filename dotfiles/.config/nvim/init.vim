@@ -4,8 +4,9 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 call plug#begin('~/.vim/plugged')
-    "{{ Theme }}}
-    Plug 'sainnhe/edge'
+    "{{ Theme }}
+    Plug 'sainnhe/gruvbox-material'
+
     "{{ The Basics }}
     Plug 'itchyny/lightline.vim'                        " Lightline statusbar
     Plug 'mengelbrecht/lightline-bufferline'
