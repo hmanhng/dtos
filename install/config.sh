@@ -28,5 +28,6 @@ sudo chsh $USER -s "/bin/fish" && \
 
 sudo systemctl enable bluetooth
 sudo systemctl enable lightdm
+sudo systemctl enable systemd-timesyncd
 
 cat bin/bamboo.txt | sudo tee -a /etc/profile

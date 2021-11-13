@@ -36,7 +36,6 @@ xdg-user-dirs
 wireguard-tools openresolv
 
 conky
-reflector
 unimatrix-git
 htop
 fastfetch
