@@ -41,10 +41,10 @@ Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=tru
                     , Run BatteryP ["BAT1"] ["-t", "<acstatus><watts> (<left>%)"] 360
                         -- Time and date
                     , Run Date "<fn=2>\xf017</fn> %b %d %Y - %H:%M" "date" 50
-						-- Volume
-					, Run Alsa "default" "Master" []
+                        -- Volume
+                    , Run Alsa "default" "Master" []
 
-					, Run Brightness [ "-t", "Br: <percent>%", "--", "-D", "intel_backlight" ] 20
+                    , Run Brightness [ "-t", "Br: <percent>%", "--", "-D", "intel_backlight" ] 20
 
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
