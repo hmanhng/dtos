@@ -1,8 +1,8 @@
 Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=true:hinting=true"
        , additionalFonts = [ "xft:Ubuntu:weight=bold:pixelsize=14,5:antialias=true:hinting=true" 
-						   , "xft:Font Awesome 5 Free Solid:pixelsize=12"
-						   , "xft:Font Awesome 5 Brands:pixelsize=12"
-	   					   ]
+                           , "xft:Font Awesome 5 Free Solid:pixelsize=12"
+                           , "xft:Font Awesome 5 Brands:pixelsize=12"
+                           ]
        , bgColor      = "#282c34"
        , fgColor      = "#ff6c6b"
        -- Position TopSize and BottomSize take 3 arguments:
@@ -53,5 +53,5 @@ Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=tru
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "  <icon=haskell_20.xpm/> <fc=#666666>|</fc> %UnsafeStdinReader% }{ <fn=1><fc=#b5e4f4>%penguin% %kernel%</fc><fc=#666666>|</fc> <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> <fc=#666666>|</fc> <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> <fc=#666666>|</fc> <fc=#a9a1e1>%disku%</fc> <fc=#666666>|</fc> <fc=#98be65>%uparrow% %uptime%</fc> <fc=#666666>|</fc> <fc=#c678dd>%bell% <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action></fc> <fc=#666666>|</fc> <fc=#ff8e1e>%baticon% <action=`xfce4-power-manager-settings`>%battery%</action></fc> <fc=#666666>|</fc> <fc=#46d9ff>%date%</fc> <fc=#666666>|</fc> <fc=#FFFAFA>%bright%</fc> <fc=#666666>|</fc> <fc=#e8bbd0><action='pavucontrol'>%alsa:default:Master%</action></fc><fc=#666666>|</fc></fn>%trayerpad%"
+       , template = "  <icon=haskell_20.xpm/> <fc=#666666>|</fc> %UnsafeStdinReader% }{ <fn=1><fc=#8ABEB7>%penguin% %kernel%</fc> <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc>  <fc=#CC6666><action=`alacritty -e htop`>%memory%</action></fc>  <fc=#a9a1e1>%disku%</fc>  <fc=#98be65>%uparrow% %uptime%</fc>  <fc=#d3869b>%bell% <action=`alacritty -e sudo pacman -Syu`>%pacupdate%</action></fc>  <fc=#e78a4e>%baticon% <action=`xfce4-power-manager-settings`>%battery%</action></fc>  <fc=#81A2BE>%date%</fc>  <fc=#FFFAFA>%bright%</fc>  <fc=#e8bbd0><action='pavucontrol'>%alsa:default:Master%</action></fc><fc=#666666>|</fc></fn>%trayerpad%"
        }

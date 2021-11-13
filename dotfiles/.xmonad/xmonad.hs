@@ -80,11 +80,11 @@ main = do
         , focusedBorderColor = myFocusColor
         , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
-              { ppOutput = hPutStrLn xmproc                         -- xmobar on monitor
-              , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
+              { ppOutput = hPutStrLn xmproc                                   -- xmobar on monitor
+              , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]"           -- "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
-              , ppHidden = xmobarColor "#82AAFF" "" . wrap "<box type=Top width=2 mt=2 color=#82AAFF>" "</box>" . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#82AAFF" ""  . clickable     -- Hidden workspaces (no windows)
+              , ppHidden = xmobarColor "#ec9157" "" . wrap "*" "" . clickable -- "<box type=Top width=2 mt=2 color=#82AAFF>" "</box>" . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#e3cbcb" "" . clickable      -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
@@ -241,7 +241,7 @@ myManageHook = composeAll
      , className =? "dialog"          --> doFloat
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
-     , title =? "Oracle VM VirtualBox Manager"  --> doFloat
+     --, title =? "Oracle VM VirtualBox Manager"  --> doFloat
      , className =? "Microsoft-edge"   --> doShift ( myWorkspaces !! 1 )
      , className =? "Google-chrome"    --> doShift ( myWorkspaces !! 1 )
      , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
