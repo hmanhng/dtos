@@ -10,4 +10,5 @@ sh install/app.sh
 sh install/config.sh
 sh install/vim.sh
 
+sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
