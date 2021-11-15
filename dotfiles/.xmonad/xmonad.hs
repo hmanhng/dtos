@@ -35,7 +35,7 @@ import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
 import XMonad.Layout.GridVariants (Grid(Grid))
--- import XMonad.Layout.SimplestFloat
+import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 
@@ -194,6 +194,9 @@ tabs     = renamed [Replace "tabs"]
            -- I cannot add spacing to this layout because it will
            -- add spacing between window and tabs which looks bad.
            $ tabbed shrinkText myTabTheme
+floats   = renamed [Replace "floats"]
+           $ smartBorders
+           $ limitWindows 20 simplestFloat
 
 -- setting colors for tabs layout and tabs sublayout.
 myTabTheme = def { fontName            = myFont
@@ -223,6 +226,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts monoc
                                  ||| noBorders monocle
                                  ||| noBorders tabs
                                  ||| noBorders grid
+                                 ||| floats
 
 myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
