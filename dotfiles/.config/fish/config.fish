@@ -10,8 +10,8 @@ set VISUAL nvim              # $VISUAL use Emacs in GUI mode
 ###FZF
 set fzf_preview_dir_cmd exa --all --color=always
 set fzf_fd_opts --hidden --exclude=.git
-set -x FZF_DEFAULT_OPTS "--reverse --preview 'bat --color always {}'"
-set -x FZF_DEFAULT_COMMAND 'rg --hidden -l ""'
+set -x FZF_DEFAULT_OPTS "--ansi --reverse --preview 'bat --color always {}'"
+set -x FZF_DEFAULT_COMMAND "fd --hidden --color=always"
 
 ### SET MANPAGER
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
@@ -20,12 +20,6 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 function fish_user_key_bindings
   #fish_default_key_bindings
   fish_vi_key_bindings
-end
-### END OF VI MODE ###
-function fzf-bcd-widget -d 'cd backwards'
-    pwd | awk -v RS=/ '/\n/ {exit} {p=p $0 "/"; print p}' | tac | eval (__fzfcmd) +m --select-1 --exit-0 $FZF_BCD_OPTS | read -l result
-    [ "$result" ]; and cd $result
-    commandline -f repaint
 end
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
