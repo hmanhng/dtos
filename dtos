@@ -1,6 +1,10 @@
 #!/bin/bash
 
-sudo reflector -c Vietnam,Hong_Kong,Singapore,China -f 20 -l 10 -p http,https --sort delay --save /etc/pacman.d/mirrorlist
+echo "##################################################################################"
+echo "#################################    REFLECTOR    ################################"
+echo "##################################################################################"
+
+sudo reflector -c Vietnam,Hong_Kong,Singapore,China -f 20 -l 10 -p http,https --sort delay --verbose --save /etc/pacman.d/mirrorlist
 sudo pacman -Syy
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
 
