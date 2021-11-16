@@ -245,6 +245,7 @@ myManageHook = composeAll
      , className =? "dialog"          --> doFloat
      , className =? "download"        --> doFloat
      , className =? "error"           --> doFloat
+     , className =? "obs"             --> doFloat
      --, title =? "Oracle VM VirtualBox Manager"  --> doFloat
      , className =? "Microsoft-edge"   --> doShift ( myWorkspaces !! 1 )
      , className =? "Google-chrome"    --> doShift ( myWorkspaces !! 1 )
