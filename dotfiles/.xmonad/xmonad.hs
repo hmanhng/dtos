@@ -112,10 +112,10 @@ myBorderWidth :: Dimension
 myBorderWidth = 2           -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#B0C2D7"   -- Border color of normal windows
+myNormColor   = "#282c34"   -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#FEC85E"   -- Border color of focused windows
+myFocusColor  = "#46d9ff"   -- Border color of focused windows
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
