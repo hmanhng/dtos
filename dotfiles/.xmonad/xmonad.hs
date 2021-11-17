@@ -100,7 +100,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "kitty"    -- Sets default terminal
+myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
 myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
@@ -123,7 +123,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm]
   where
-    spawnTerm  = myTerminal ++ " -T scratchpad"
+    spawnTerm  = myTerminal ++ " -t scratchpad"
     findTerm   = title =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                where

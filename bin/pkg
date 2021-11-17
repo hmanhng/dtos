@@ -6,7 +6,7 @@ xmonad
 xmonad-contrib
 xmobar
 trayer
-kitty
+alacritty
 fish
 lightdm
 lightdm-webkit2-greeter
