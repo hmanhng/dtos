@@ -50,7 +50,8 @@ xfce4-clipman-plugin xfce4-power-manager xfce4-screenshooter
 
 #ThemesAndFont
 arc-gtk-theme
-papirus-icon-theme
+#papirus-icon-theme
+deepin-icon-theme
 ttf-ubuntu-font-family
 ttf-ms-fonts
 #noto-fonts 
