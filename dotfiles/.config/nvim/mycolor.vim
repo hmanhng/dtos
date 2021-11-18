@@ -1,6 +1,6 @@
 " Colorscheme {{{
 set background=dark
-"let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_cursor = 'auto'
@@ -16,12 +16,11 @@ let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_palette = 'mix'
 
 colorscheme gruvbox-material
-hi LineNr guifg=#ADADAD
-hi CursorLineNr guifg=#F6A66F guibg=#4B4B4B
-hi CursorLine guibg=#4B4B4B
-hi MatchParen guibg=#d4be98
+hi LineNr guifg=#b3b3b3
+hi CursorLineNr guifg=#fc9867 guibg=#4B4B4B
+hi CursorLine guibg=none
+hi MatchParen gui=bold guibg=none guifg=#00fff7
 "}}}
-
 " Lightline {{{
 let s:black = [ '#2b2b2b', 235 ]
 let s:gray = [ '#323232', 236 ]
