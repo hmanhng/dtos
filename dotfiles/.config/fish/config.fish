@@ -65,7 +65,7 @@ alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
 # get fastest mirrors
-alias mirror="sudo reflector -c Vietnam,Hong_Kong,Singapore,China -f 20 -l 10 -p http,https --sort delay --verbose --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
+alias mirror="sudo reflector -c Singapore,China -f 20 -l 10 -p http,https --sort rate --verbose --save /etc/pacman.d/mirrorlist && sudo pacman -Syy"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
