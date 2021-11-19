@@ -230,7 +230,7 @@ schemes:
       blue:    '#ff8080'
       magenta: '#c678dd'
       cyan:    '#5699af'
-      white:   '#202328'
+      white:   '#fcfcfa'
     bright:
       black:   '#5b6268'
       red:     '#da8548'
