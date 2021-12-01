@@ -1,4 +1,10 @@
-xorg
+xorg-server
+xorg-xkill
+xorg-xmessage
+xorg-xprop
+xorg-xrdb
+xorg-xset
+xorg-xsetroot
 xf86-video-intel
 intel-media-driver
 intel-gpu-tools
@@ -60,7 +66,7 @@ ttf-iosevka-nerd
 otf-ipafont
 
 #App
-timeshift
+#timeshift
 vlc
 discord
 qbittorrent
