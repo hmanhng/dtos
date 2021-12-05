@@ -59,8 +59,7 @@ arc-gtk-theme
 #papirus-icon-theme
 deepin-icon-theme
 ttf-ubuntu-font-family
-ttf-ms-fonts
-#noto-fonts 
+#noto-fonts
 otf-font-awesome
 ttf-iosevka-nerd
 otf-ipafont
@@ -71,7 +70,7 @@ vlc
 discord
 qbittorrent
 obs-studio
-microsoft-edge-stable-bin
+google-chrome
 teams
 libreoffice-still-vi
 pcmanfm
