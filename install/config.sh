@@ -14,10 +14,14 @@ cp -rf dotfiles/. $HOME/
 sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
 sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
 
+# Wallpapers
+git clone https://github.com/hmanhng/Wallpapers.git $HOME/Pictures/Wallpapers
+
 # Icon for fish
 sudo curl -fL https://github.com/ttys3/starship-config/releases/download/v0.2.0/os-icon.linux_amd64  -o /usr/local/bin/os-icon
 sudo chmod a+x /usr/local/bin/os-icon
 
+# Lightdm
 sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
 sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
 cp $HOME/Pictures/hmanhng.jpg $HOME/.face
