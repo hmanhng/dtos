@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo true
+echo "##################################################################################"
+echo "#################################    REFLECTOR    ################################"
+echo "##################################################################################"
+sudo reflector -c Singapore,China -f 20 -l 10 -p http,https --sort rate --verbose --save /etc/pacman.d/mirrorlist
+sudo pacman -Syy

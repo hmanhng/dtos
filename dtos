@@ -1,14 +1,6 @@
 #!/bin/bash
 
-sudo true
-
-echo "##################################################################################"
-echo "#################################    REFLECTOR    ################################"
-echo "##################################################################################"
-sudo reflector -c Singapore,China -f 20 -l 10 -p http,https --sort rate --verbose --save /etc/pacman.d/mirrorlist
-sudo pacman -Syy
 git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si --noconfirm && cd .. && rm -rf yay/
-
 yay -S --needed --noconfirm $(cat bin/pkg | egrep -v "^\s*(#|$)")
 
 sh install/app.sh
