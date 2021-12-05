@@ -103,7 +103,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
+myBrowser = "google-chrome-stable"  -- Sets qutebrowser as browser
 
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim "    -- Sets nvim as editor
@@ -264,7 +264,7 @@ myKeys =
         , ("M-<Esc>", spawn "lxsession-logout")
 
     -- KB_GROUP Run Prompt
-        , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'window,drun' -modi combi -font 'Reogria 12'")
+        , ("M1-<F1>", spawn "rofi -show combi -combi-modi 'drun' -modi combi -font 'Ubuntu 13'")
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
