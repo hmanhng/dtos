@@ -25,6 +25,7 @@ sudo chmod a+x /usr/local/bin/os-icon
 sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
 sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
 cp $HOME/Pictures/hmanhng.jpg $HOME/.face
+sudo bash -c 'cat $HOME/hmanhng > /var/lib/AccountsService/users/hmanhng' && rm $HOME/hmanhng
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
