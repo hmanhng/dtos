@@ -337,7 +337,7 @@ myKeys =
         , ("C-;", spawn "xbacklight -10")
         , ("C-'", spawn "xbacklight +10")
 
-	--KB_GROUP Screenshot
+    --KB_GROUP Screenshot
         , ("<Print>", spawn "xfce4-screenshooter -f")
         , ("C-S-y", spawn "xfce4-screenshooter -r")
         , ("C-S-<Print>", spawn "xfce4-screenshooter -r")
