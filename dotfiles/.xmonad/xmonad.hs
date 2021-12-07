@@ -103,7 +103,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "google-chrome-stable"  -- Sets qutebrowser as browser
+myBrowser = "microsoft-edge-stable"  -- Sets qutebrowser as browser
 
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim "    -- Sets nvim as editor
