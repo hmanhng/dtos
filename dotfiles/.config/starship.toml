@@ -4,7 +4,6 @@ add_newline = false
 format = """
 $username\
 $hostname\
-$custom\
 $shlvl\
 $kubernetes\
 $directory\
@@ -31,28 +30,32 @@ $jobs\
 $battery\
 $time\
 $cmd_duration\
+$fill $custom\
 $line_break\
 $status\
 $shell\
 $character"""
 
+[fill]
+symbol = " "
+
 [username]
-style_user = "yellow bold"
+style_user = "#ff7424 bold"
 style_root = "black bold"
-format = ' \[[$user]($style)'
+format = '[\[](bold #de4343)[$user]($style)'
 disabled = false
 show_always = true
 
 [hostname]
 ssh_only = false
-format =  ':[$hostname](bold red)\] '
+format =  '[@](bold #ffa724)[$hostname](bold #e3c832)[\]](bold #de4343) '
 trim_at = ".companyname.com"
 disabled = false
 
 [character]
-success_symbol = " [ ](bold green)"
-error_symbol = " [✖](bold red)"
-vicmd_symbol = " [](bold green)"
+success_symbol = " [>](bold #43dea0)"
+error_symbol = " [✖](bold #de4343)"
+vicmd_symbol = '[\[V\]](bold green)'
 
 [directory]
 read_only = "  "
