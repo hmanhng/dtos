@@ -2,9 +2,9 @@ add_newline = false
 
 # https://starship.rs/config/#default-prompt-format
 format = """
-$custom\
 $username\
 $hostname\
+$custom\
 $shlvl\
 $kubernetes\
 $directory\
@@ -35,6 +35,19 @@ $line_break\
 $status\
 $shell\
 $character"""
+
+[username]
+style_user = "yellow bold"
+style_root = "black bold"
+format = ' \[[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  ':[$hostname](bold red)\] '
+trim_at = ".companyname.com"
+disabled = false
 
 [character]
 success_symbol = " [ ](bold green)"
@@ -70,18 +83,6 @@ disabled = true
 
 [git_commit]
 tag_disabled = false
-
-# https://github.com/starship/starship/discussions/1252#discussioncomment-822676
-# show os icon, thanks https://www.nerdfonts.com/cheat-sheet
-#                 
-[custom.os-icon]
-disabled = false
-command = "os-icon"
-style = "bold green"
-format = "[$symbol( $output )]($style)"
-symbol = ""
-when = "true"
-shell = ["bash", "--noprofile", "--norc"]
 
 # https://github.com/starship/starship/discussions/1252#discussioncomment-838901
 [custom.git_remote_url]

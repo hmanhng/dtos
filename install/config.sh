@@ -20,10 +20,6 @@ git clone https://github.com/hmanhng/Wallpapers.git $HOME/Pictures/Wallpapers
 # Fonts ms
 git clone https://github.com/hmanhng/WindowsFonts.git $HOME/WindowsFonts && rm -rf $HOME/WindowsFonts/.git && sudo mv $HOME/WindowsFonts/ /usr/share/fonts/ && sudo chmod 644 /usr/share/fonts/WindowsFonts/* && fc-cache --force
 
-# Icon for fish
-sudo curl -fL https://github.com/ttys3/starship-config/releases/download/v0.2.0/os-icon.linux_amd64  -o /usr/local/bin/os-icon
-sudo chmod a+x /usr/local/bin/os-icon
-
 # Lightdm
 sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
 sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
