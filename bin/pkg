@@ -41,6 +41,7 @@ network-manager-applet
 alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 xdg-user-dirs
 wireguard-tools openresolv
+v2ray
 
 conky
 unimatrix-git

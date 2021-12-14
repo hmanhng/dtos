@@ -1,0 +1,98 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [{
+    "port": 1080,
+    "listen": "127.0.0.1",
+    "protocol": "http",
+    "settings": {
+      "timeout": 0
+    },
+    "sniffing": {
+      "enabled": false
+    }
+  }],
+  "outbounds": [{
+    "sendThrough": "0.0.0.0",
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [{
+        "address": "hmanhng.tk",
+        "port": 80,
+        "users": [{
+          "id": "14c8408a-8d1f-457d-956a-f58818330295",
+          "alterId": 0,
+          "security": "auto"
+        }]
+      }]
+    },
+    "tag": "PROXY",
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "headers": {
+          "Host": "livestream2.tv360.vn"
+        }
+      }
+    }
+  }],
+
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "domainMatcher": "mph",
+    "rules":[{
+        // Blocks major ads.
+        "type": "field",
+        "domain": ["geosite:category-ads-all"],
+        "outboundTag": "blocked"
+      }]
+  },
+
+  "dns": {
+    "hosts": {
+      // Match v2fly.org to another domain on CloudFlare. This domain will be used when querying IPs for v2fly.org.
+      "domain:v2fly.org": "www.vicemc.net",
+
+      // The following settings help to eliminate DNS poisoning in mainland China.
+      // It is safe to comment these out if this is not the case for you.
+      "domain:github.io": "pages.github.com",
+      "domain:wikipedia.org": "www.wikimedia.org",
+      "domain:shadowsocks.org": "electronicsrealm.com"
+    },
+    "servers": [
+      "1.1.1.1",
+      {
+        "address": "114.114.114.114",
+        "port": 53,
+        // List of domains that use this DNS first.
+        "domains": [
+          "geosite:cn"
+        ]
+      },
+      "8.8.8.8",
+      "localhost"
+    ]
+  },
+
+  // Policy controls some internal behavior of how V2Ray handles connections.
+  // It may be on connection level by user levels in 'levels', or global settings in 'system.'
+  "policy": {
+    // Connection policys by user levels
+    "levels": {
+      "0": {
+        "uplinkOnly": 0,
+        "downlinkOnly": 0,
+        "statsUserUplink": false,
+        "statsUserDownlink": false
+      }
+    },
+    "system": {
+      "statsInboundUplink": false,
+      "statsInboundDownlink": false,
+      "statsOutboundUplink": false,
+      "statsOutboundDownlink": false
+    }
+  },
+  "other": {}
+}
