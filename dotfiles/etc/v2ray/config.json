@@ -3,11 +3,11 @@
     "loglevel": "warning"
   },
   "inbounds": [{
-    "port": 1080,
+    "port": 8080,
     "listen": "127.0.0.1",
     "protocol": "http",
     "settings": {
-      "timeout": 0
+      //"timeout": 0
     },
     "sniffing": {
       "enabled": false
