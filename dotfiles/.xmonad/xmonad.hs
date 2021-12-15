@@ -328,12 +328,14 @@ myKeys =
 
     -- KB_GROUP Multimedia Keys
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("C-1", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
         , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-        , ("C-2", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        , ("<XF86AudioMicMute>", spawn "amixer set Capture toggle")
+        , ("C-1", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+        , ("C-2", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ("C-3", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-        , ("<XF86Eject>", spawn "toggleeject")
+        , ("C-4", spawn "amixer set Capture toggle")
+
         , ("C-;", spawn "xbacklight -10")
         , ("C-'", spawn "xbacklight +10")
 
