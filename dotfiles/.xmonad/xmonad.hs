@@ -137,6 +137,7 @@ myStartupHook = do
     spawnOnce "alacritty -o window.startup_mode=Fullscreen background_opacity=1 -e unimatrix -l knS -c cyan -s 90"
     spawnOnce "lxsession &"
     spawnOnce "picom &"
+    spawnOnce "udiskie -s"
     spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
     --spawnOnce "alacritty -e $HOME/.config/gotop/gotop"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
