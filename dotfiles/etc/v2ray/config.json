@@ -1,98 +1,133 @@
 {
   "log": {
+    "access": "",
+    "error": "",
     "loglevel": "warning"
   },
-  "inbounds": [{
-    "port": 8080,
-    "listen": "127.0.0.1",
-    "protocol": "http",
-    "settings": {
-      //"timeout": 0
+  "inbounds": [
+    {
+      "tag": "socks",
+      "port": 8080,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": false,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "allowTransparent": false
+      }
     },
-    "sniffing": {
-      "enabled": false
+    {
+      "tag": "http",
+      "port": 8081,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "udp": false,
+        "allowTransparent": false
+      }
     }
-  }],
-  "outbounds": [{
-    "sendThrough": "0.0.0.0",
-    "protocol": "vmess",
-    "settings": {
-      "vnext": [{
-        "address": "hmanhng.tk",
-        "port": 80,
-        "users": [{
-          "id": "14c8408a-8d1f-457d-956a-f58818330295",
-          "alterId": 0,
-          "security": "auto"
-        }]
-      }]
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "x-ui.hmanhng.tk",
+            "port": 443,
+            "users": [
+              {
+                "id": "3cec23d2-2877-4591-904f-f48067c48aa3",
+                "alterId": 0,
+                "email": "t@t.tt",
+                "security": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": true,
+          "serverName": "livestream2.tv360.vn"
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "livestream2.tv360.vn"
+          }
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8
+      }
     },
-    "tag": "PROXY",
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-        "headers": {
-          "Host": "livestream2.tv360.vn"
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
         }
       }
     }
-  }],
-
+  ],
   "routing": {
-    "domainStrategy": "IPOnDemand",
-    "domainMatcher": "mph",
-    "rules":[{
-        // Blocks major ads.
-        "type": "field",
-        "domain": ["geosite:category-ads-all"],
-        "outboundTag": "blocked"
-      }]
-  },
-
-  "dns": {
-    "hosts": {
-      // Match v2fly.org to another domain on CloudFlare. This domain will be used when querying IPs for v2fly.org.
-      "domain:v2fly.org": "www.vicemc.net",
-
-      // The following settings help to eliminate DNS poisoning in mainland China.
-      // It is safe to comment these out if this is not the case for you.
-      "domain:github.io": "pages.github.com",
-      "domain:wikipedia.org": "www.wikimedia.org",
-      "domain:shadowsocks.org": "electronicsrealm.com"
-    },
-    "servers": [
-      "1.1.1.1",
+    "domainStrategy": "IPIfNonMatch",
+    "domainMatcher": "linear",
+    "rules": [
       {
-        "address": "114.114.114.114",
-        "port": 53,
-        // List of domains that use this DNS first.
-        "domains": [
-          "geosite:cn"
+        "type": "field",
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api"
+      },
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": [
+          "geosite:google"
         ]
       },
-      "8.8.8.8",
-      "localhost"
-    ]
-  },
-
-  // Policy controls some internal behavior of how V2Ray handles connections.
-  // It may be on connection level by user levels in 'levels', or global settings in 'system.'
-  "policy": {
-    // Connection policys by user levels
-    "levels": {
-      "0": {
-        "uplinkOnly": 0,
-        "downlinkOnly": 0,
-        "statsUserUplink": false,
-        "statsUserDownlink": false
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "domain:example-example.com",
+          "domain:example-example2.com"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "block",
+        "domain": [
+          "geosite:category-ads-all"
+        ]
       }
-    },
-    "system": {
-      "statsInboundUplink": false,
-      "statsInboundDownlink": false,
-      "statsOutboundUplink": false,
-      "statsOutboundDownlink": false
-    }
-  },
-  "other": {}
+    ]
+  }
 }
