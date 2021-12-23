@@ -37,6 +37,7 @@ ripgrep
 bat
 openssh
 wget
+reflector
 bluez blueman
 network-manager-applet
 alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth

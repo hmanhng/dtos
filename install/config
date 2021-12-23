@@ -4,6 +4,7 @@ git config --global user.email "hmanhng@icloud.com" #"$email"
 git config --global user.name "hmanhng"  #"$name"
 
 #Bamboo
+cat bin/bamboo.txt | sudo tee -a /etc/profile
 ibus restart
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['xkb:us::eng', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
@@ -38,4 +39,6 @@ sudo systemctl enable lightdm
 sudo systemctl enable systemd-timesyncd
 sudo systemctl enable v2ray
 
-cat bin/bamboo.txt | sudo tee -a /etc/profile
+sudo bash -c 'echo 259:2 > /sys/power/resume'
+sudo mkinitcpio -P
+sudo grub-mkconfig -o /boot/grub/grub.cfg
