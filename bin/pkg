@@ -9,8 +9,8 @@ xorg-xbacklight
 xf86-video-intel
 intel-media-driver
 intel-gpu-tools
-xmonad-git
-xmonad-contrib-git
+xmonad
+xmonad-contrib
 xmobar
 trayer
 alacritty
