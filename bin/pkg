@@ -29,6 +29,7 @@ pacman-contrib
 inetutils
 lxappearance lxsession
 libinput
+neovim
 exa
 fd
 fzf
