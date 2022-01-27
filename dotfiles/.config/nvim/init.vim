@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mengelbrecht/lightline-bufferline'
     Plug 'andymass/vim-matchup'
     Plug 'scrooloose/nerdcommenter' " comment fast
+    Plug 'voldikss/vim-floaterm'
     "{{ File management }}
     Plug 'scrooloose/nerdtree'                          " Nerdtree
     Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -192,4 +193,10 @@ source ~/.config/nvim/mycolor.vim
 source ~/.config/nvim/lightline.vim
 source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/git.vim
+
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_keymap_toggle = '<leader>t'
+nnoremap <leader>gcc :cd %:p:h<CR>:FloatermNew --autoclose=0 gcc % -o %< && ./%<<CR>
+nnoremap <leader>g++ :FloatermNew --autoclose=0 g++ % -o prog && ./prog<CR>
 " }}}
