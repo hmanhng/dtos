@@ -134,7 +134,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm]
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "alacritty -o window.startup_mode=Fullscreen background_opacity=1 -e unimatrix -l knS -c cyan -s 90"
+    spawnOnce "alacritty -o window.startup_mode=Fullscreen window.opacity=1 -e unimatrix -l knS -c cyan -s 90"
     spawnOnce "lxsession &"
     spawnOnce "picom &"
     spawnOnce "udiskie -s"
