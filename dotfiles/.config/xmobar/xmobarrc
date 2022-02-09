@@ -1,7 +1,7 @@
 Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=true:hinting=true"
        , additionalFonts = [ "xft:Ubuntu:weight=bold:pixelsize=14,5:antialias=true:hinting=true" 
-                           , "xft:Font Awesome 5 Free Solid:pixelsize=12"
-                           , "xft:Font Awesome 5 Brands:pixelsize=12"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=12"
+                           , "xft:Font Awesome 6 Brands:pixelsize=12"
                            ]
        , bgColor      = "#282c34"
        , fgColor      = "#ff6c6b"
