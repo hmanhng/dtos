@@ -31,7 +31,7 @@ xcape
 xclip
 pacman-contrib
 # inetutils
-lxappearance lxsession
+lxappearance
 libinput
 neovim
 exa

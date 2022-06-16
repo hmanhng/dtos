@@ -130,13 +130,6 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm]
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "lxsession &"
-    -- spawnOnce "picom &"
-    -- spawnOnce "udiskie -s"
-    -- spawnOnce "xcape -e 'Super_L=Alt_L|F1'"
-    -- spawnOnce "trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 24 &"
-    -- spawnOnce "nowater -T"
-    -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     setWMName "LG3D"
 
 
