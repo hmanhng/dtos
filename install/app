@@ -4,7 +4,7 @@ curl -fsSL https://fnm.vercel.app/install | bash
 ~/.fnm/fnm install 16.15.0
 
 #Xdm
-wget --no-check-certificate https://github.com/hmanhng/xdm/raw/main/xdm.sh && sudo sh ./xdm.sh && rm -f xdm.sh
+wget --no-check-certificate https://github.com/hmanhng/xdm/raw/main/xdm.sh && doas sh ./xdm.sh && rm -f xdm.sh
 
 #End
 yay -Yc --noconfirm
