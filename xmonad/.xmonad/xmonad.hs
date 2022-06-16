@@ -35,7 +35,6 @@ import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.Tabbed
 
     -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
@@ -156,7 +155,6 @@ mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 tall     = renamed [Replace "tall"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
            $ mySpacing' 15
@@ -164,23 +162,8 @@ tall     = renamed [Replace "tall"]
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
            $ windowNavigation
-           $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
            $ limitWindows 20 Full
-tabs     = renamed [Replace "tabs"]
-           -- I cannot add spacing to this layout because it will
-           -- add spacing between window and tabs which looks bad.
-           $ tabbed shrinkText myTabTheme
-
--- setting colors for tabs layout and tabs sublayout.
-myTabTheme = def { fontName            = myFont
-                 , activeColor         = "#46d9ff"
-                 , inactiveColor       = "#313846"
-                 , activeBorderColor   = "#46d9ff"
-                 , inactiveBorderColor = "#282c34"
-                 , activeTextColor     = "#282c34"
-                 , inactiveTextColor   = "#d0d0d0"
-                 }
 
 -- Theme for showWName which prints current workspace when you change workspaces.
 myShowWNameTheme :: SWNConfig
@@ -197,7 +180,6 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts monoc
              where
                myDefaultLayout = noBorders tall --withBorder myBorderWidth tall
                                  ||| noBorders monocle
-                                 ||| noBorders tabs
 
 myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox "]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
@@ -258,7 +240,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
     -- KB_GROUP Floating windows
         , ("M-t", sendMessage (T.Toggle "monocle")) -- Toggles my 'floats' layout
-        , ("M-S-t", sinkAll) 
+        , ("M-S-t", sinkAll)
 
     -- KB_GROUP Increase/decrease spacing (gaps)
         , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
