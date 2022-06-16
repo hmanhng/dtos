@@ -1,0 +1,53 @@
+Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Iosevka Nerd Font:weight=bold:pixelsize=15:antialias=true:hinting=true" 
+                           , "xft:Iosevka Nerd Font:pixelsize=17"
+                           , "xft:Font Awesome 6 Brands:pixelsize=12"
+                           ]
+       , bgColor      = "#282c34"
+       , fgColor      = "#ff6c6b"
+       -- Position TopSize and BottomSize take 3 arguments:
+       --   an alignment parameter (L/R/C) for Left, Right or Center.
+       --   an integer for the percentage width, so 100 would be 100%.
+       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   NOTE: The height should be the same as the trayer (system tray) height.
+       , position       = TopSize L 100 25
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".config/xmobar/xpm"  -- default: "."
+       , commands = [
+                        -- Echos a "penguin" icon in front of the kernel output.
+                      Run Com "echo" ["<fn=2> </fn>"] "penguin" 3600
+                        -- Get kernel version (script found in .local/bin)
+                    , Run Com ".local/bin/kernel" [] "kernel" 36000
+                        -- Cpu usage in percent
+                    , Run Cpu ["-t", "<fn=2></fn> <total>%","-H","50","--high","red"] 20
+                        -- Ram used number and percent
+                    , Run Memory ["-t", "<fn=2> </fn><used>M"] 20
+                        -- Disk space free
+                    , Run DiskU [("/", "<fn=2> </fn><free> free")] [] 60
+                        -- Uptime
+                    , Run Uptime ["-t","<fn=2>ﮮ </fn><days>d <hours>h"] 360
+                        -- Echos a "bell" icon in front of the pacman updates.
+                    , Run Com "echo" ["<fn=2> </fn>"] "bell" 3600
+                        -- Check for pacman updates (script found in .local/bin)
+                    , Run Com ".local/bin/pacupdate" [] "pacupdate" 3600
+                        -- Battery
+                    , Run BatteryP ["BAT1"] ["-t", "<fn=2> </fn><acstatus><watts>(<left>%)"] 360
+                        -- Time and date
+                    , Run Date "<fn=2> </fn>%b %d %Y [ %H:%M ]" "date" 50
+                        -- Volume
+                    , Run Alsa "default" "Master" ["-t", "Vol:<status><volume>%"]
+
+                    , Run Brightness ["-t", "Br:<percent>%", "--", "-D", "intel_backlight"] 10
+
+                        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+                    , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
+                        -- Prints out the left side items such as workspaces, layout, etc.
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <icon=haskell_20.xpm/> %UnsafeStdinReader%}{<fn=1><box type=Bottom width=2 color=#8ABEB7><fc=#8ABEB7>%penguin%%kernel%</fc></box> <box type=Bottom width=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box> <box type=Bottom width=2 color=#cc6666><fc=#CC6666><action=`alacritty -e htop`>%memory%</action></fc></box> <box type=Bottom width=2 color=#98be65><fc=#98be65>%uptime%</fc></box> <box type=Bottom width=2 color=#e78a4e><fc=#e78a4e><action=`xfce4-power-manager-settings`>%battery%</action></fc></box> <box type=Bottom width=2 color=#fafafa><fc=#fafafa>%bright%</fc></box> <box type=Bottom width=2 color=#e8bbd0><fc=#e8bbd0><action='pavucontrol'>%alsa:default:Master%</action></fc></box> <box type=Bottom width=2 color=#81A2BE><fc=#81A2BE>%date%</fc></box> <fc=#666666>|</fc></fn>%trayerpad%"
+       }

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# lunarvim
+LV_BRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh) -y
+npm i -g bash-language-server
+dotnet tool install --global csharp-ls
+
+# dotfiles
+cd ~/dotfiles && ./install.sh lvim

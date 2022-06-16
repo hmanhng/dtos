@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=trayer
+Comment=
+Exec=trayer --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 24
+OnlyShowIn=XFCE;LXDE;LXDE;LXDE;LXDE;LXDE;LXDE;LXDE;LXDE;
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=false

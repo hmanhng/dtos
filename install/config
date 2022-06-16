@@ -1,43 +1,43 @@
 #!/bin/bash
 
-git config --global user.email "hmanhng@icloud.com" #"$email"
-git config --global user.name "hmanhng"  #"$name"
+git config --global user.email "$USER@icloud.com"
+git config --global user.name "$USER"
 
 #Bamboo
-cat bin/bamboo.txt | sudo tee -a /etc/profile
+cat tmp/bamboo.txt | doas tee -a /etc/profile
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['xkb:us::eng', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 
-sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
-sudo sed -i 's/Logo=1/Logo=0/g' /etc/libreoffice/sofficerc
+doas sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
 
 cp -rf dotfiles/. $HOME/
-sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
-sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
+doas cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
+doas cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
+stow xmonad
+
+wget -q --show-progress https://github.com/NyaMisty/AltServer-Linux/releases/download/v0.0.5/AltServer-x86_64 -O ~/.local/bin/AltServer-x86_64
 
 # Wallpapers
-git clone https://github.com/hmanhng/Wallpapers.git $HOME/Pictures/Wallpapers
+# git clone https://github.com/hmanhng/Wallpapers.git $HOME/Pictures/Wallpapers
 
 # Fonts ms
-git clone https://github.com/hmanhng/WindowsFonts.git $HOME/WindowsFonts && rm -rf $HOME/WindowsFonts/.git && sudo mv $HOME/WindowsFonts/ /usr/share/fonts/ && sudo chmod 644 /usr/share/fonts/WindowsFonts/* && fc-cache --force
-
-# Lightdm
-sudo git clone https://github.com/GabrielTenma/lightdm-gab-gradient.git /usr/share/lightdm-webkit/themes/lightdm-gab-gradient
-sudo cp $HOME/Pictures/hmanhng.jpg /var/lib/AccountsService/icons/
-cp $HOME/Pictures/hmanhng.jpg $HOME/.face
-sudo bash -c 'cat dotfiles/hmanhng > /var/lib/AccountsService/users/hmanhng' && rm $HOME/hmanhng
+# git clone https://github.com/hmanhng/WindowsFonts.git $HOME/WindowsFonts && rm -rf $HOME/WindowsFonts/.git && doas mv $HOME/WindowsFonts/ /usr/share/fonts/ && doas chmod 644 /usr/share/fonts/WindowsFonts/* && fc-cache --force
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
-sudo mv $HOME/.xmonad/hooks /etc/pacman.d/
+doas mv $HOME/.xmonad/hooks /etc/pacman.d/
 xmonad --recompile
 
-sudo chsh $USER -s "/bin/fish" && \
+doas chsh $USER -s "/bin/zsh"
 
-sudo systemctl enable bluetooth
-sudo systemctl enable lightdm
-sudo systemctl enable systemd-timesyncd
-sudo systemctl enable v2ray
+doas systemctl enable ly
+doas systemctl enable betterlockscreen@$USER
+doas systemctl enable bluetooth
+doas systemctl enable systemd-timesyncd
+doas systemctl enable clash-core-service@$USER
 
-sudo bash -c 'echo 259:2 > /sys/power/resume'
-sudo mkinitcpio -P
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo "ideapad_laptop" | doas tee -a /etc/modules
+doas bash -c 'echo 259:2 > /sys/power/resume'
+doas mkinitcpio -P
+doas grub-mkconfig -o /boot/grub/grub.cfg
+
+git clone https://github.com/hmanhng/dotfile.git ~/dotfiles && cd ~/dotfiles && ./install.sh zsh alacritty

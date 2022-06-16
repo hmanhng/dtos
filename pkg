@@ -1,0 +1,80 @@
+#!/bin/bash
+
+xorg-server
+xorg-xkill
+xorg-xmessage
+xorg-xprop
+xorg-xrdb
+xorg-xset
+xorg-xsetroot
+xorg-xbacklight
+xf86-video-intel
+intel-media-driver
+intel-gpu-tools
+xmonad
+xmonad-contrib
+xmobar
+trayer
+alacritty
+zsh
+ly
+alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+stow
+
+#Pkg
+betterlockscreen
+picom
+rofi
+starship
+xcape
+# xdotool
+xclip
+pacman-contrib
+# inetutils
+lxappearance lxsession
+libinput
+neovim
+exa
+fd
+fzf
+ripgrep
+bat
+zoxide
+openssh
+wget
+reflector
+blueman
+network-manager-applet nftables
+xdg-user-dirs
+udiskie
+mkinitcpio-firmware
+
+htop btop
+neofetch
+caffeine-ng
+redshift
+ibus-bamboo
+nowater
+ookla-speedtest-bin
+xfce4-clipman-plugin xfce4-power-manager xfce4-screenshooter
+
+clang
+dotnet-sdk
+
+#ThemesAndFont
+pop-gtk-theme
+tela-icon-theme
+xcursor-breeze
+
+#App
+eog
+vlc
+discord
+qbittorrent
+obs-studio
+microsoft-edge-stable-bin
+pcmanfm gvfs
+engrampa
+xreader
+spotify
+clash-for-windows-electron-bin clash-premium-tun
