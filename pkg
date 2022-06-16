@@ -27,7 +27,7 @@ picom
 rofi
 starship
 xcape
-# xdotool
+xdotool
 xclip
 pacman-contrib
 # inetutils
