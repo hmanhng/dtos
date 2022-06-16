@@ -7,7 +7,7 @@ xorg-xprop
 xorg-xrdb
 xorg-xset
 xorg-xsetroot
-xorg-xbacklight light
+light
 xf86-video-intel
 intel-media-driver
 intel-gpu-tools
