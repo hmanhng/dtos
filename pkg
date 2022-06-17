@@ -65,6 +65,7 @@ dotnet-sdk
 pop-gtk-theme
 tela-icon-theme
 xcursor-breeze
+ttf-liberation
 
 #App
 eog

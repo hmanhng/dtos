@@ -24,7 +24,6 @@ wget -q --show-progress https://github.com/NyaMisty/AltServer-Linux/releases/dow
 
 # Change all scripts in .local/bin to be executable.
 find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
-doas mv $HOME/.xmonad/hooks /etc/pacman.d/
 xmonad --recompile
 
 doas chsh $USER -s "/bin/zsh"
