@@ -22,6 +22,7 @@ alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 stow
 
 #Pkg
+dunst
 betterlockscreen
 picom
 rofi
