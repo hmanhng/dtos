@@ -38,7 +38,7 @@ Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=tru
                         -- Time and date
                     , Run Date "<fn=2> </fn>%b %d %Y [ %H:%M ]" "date" 50
                         -- Volume
-                    , Run Alsa "default" "Master" ["-t", "Vol:<status><volume>%"]
+                    , Run Alsa "default" "Master" ["-t", "<status>Vol:<volume>%"]
 
                     , Run Brightness ["-t", "Br:<percent>%", "--", "-D", "intel_backlight"] 10
 
