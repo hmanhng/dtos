@@ -1,5 +1,5 @@
 Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=true:hinting=true"
-       , additionalFonts = [ "xft:Iosevka Nerd Font:weight=bold:pixelsize=15:antialias=true:hinting=true" 
+       , additionalFonts = [ "xft:Iosevka Nerd Font:weight=bold:pixelsize=15:antialias=true:hinting=true"
                            , "xft:Iosevka Nerd Font:pixelsize=17"
                            , "xft:Font Awesome 6 Brands:pixelsize=12"
                            ]
@@ -17,34 +17,19 @@ Config { font            =   "xft:Iosevka:weight=bold:pixelsize=16:antialias=tru
        , persistent   = True
        , iconRoot     = ".config/xmobar/xpm"  -- default: "."
        , commands = [
-                        -- Echos a "penguin" icon in front of the kernel output.
-                      Run Com "echo" ["<fn=2> </fn>"] "penguin" 3600
-                        -- Get kernel version (script found in .local/bin)
+                      Run Com "echo" ["<fn=2> </fn>"] "penguin" 36000
                     , Run Com ".local/bin/kernel" [] "kernel" 36000
-                        -- Cpu usage in percent
                     , Run Cpu ["-t", "<fn=2></fn> <total>%","-H","50","--high","red"] 20
-                        -- Ram used number and percent
                     , Run Memory ["-t", "<fn=2> </fn><used>M"] 20
-                        -- Disk space free
                     , Run DiskU [("/", "<fn=2> </fn><free> free")] [] 60
-                        -- Uptime
                     , Run Uptime ["-t","<fn=2>ﮮ </fn><days>d <hours>h"] 360
-                        -- Echos a "bell" icon in front of the pacman updates.
                     , Run Com "echo" ["<fn=2> </fn>"] "bell" 3600
-                        -- Check for pacman updates (script found in .local/bin)
                     , Run Com ".local/bin/pacupdate" [] "pacupdate" 3600
-                        -- Battery
                     , Run BatteryP ["BAT1"] ["-t", "<fn=2> </fn><acstatus><watts>(<left>%)"] 360
-                        -- Time and date
-                    , Run Date "<fn=2> </fn>%b %d %Y [ %H:%M ]" "date" 50
-                        -- Volume
+                    , Run Date "<fn=2> </fn>%d/%m/%Y [ %H:%M ]" "date" 50
                     , Run Alsa "default" "Master" ["-t", "<status>Vol:<volume>%"]
-
-                    , Run Brightness ["-t", "Br:<percent>%", "--", "-D", "intel_backlight"] 10
-
-                        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+                    , Run Brightness ["-t", "Br:<percent>%", "--", "-D", "intel_backlight"] 1
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
-                        -- Prints out the left side items such as workspaces, layout, etc.
                     , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
