@@ -1,22 +1,13 @@
 light
 intel-media-driver
 intel-gpu-tools
-trayer
-alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 
 #Pkg
 dunst
 betterlockscreen
-picom
-rofi
-starship
-xcape
-xdotool
-xclip
 pacman-contrib
 # inetutils
 lxappearance lxsession
-libinput
 neovim
 exa
 fd

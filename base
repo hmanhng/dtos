@@ -9,7 +9,17 @@ xf86-video-intel
 xmonad
 xmonad-contrib
 xmobar
+rofi
 alacritty
 zsh
+starship
+libinput
+xcape
+xdotool
+xclip
 ly
 stow
+picom
+
+alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+trayer
