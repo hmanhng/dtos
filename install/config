@@ -31,4 +31,3 @@ echo "ideapad_laptop" | sudo tee -a /etc/modules
 sudo bash -c 'echo 259:2 > /sys/power/resume'
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-
