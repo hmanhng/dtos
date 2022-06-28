@@ -1,8 +1,16 @@
 #!/bin/bash
 
-until yay -Sy --needed --batchinstall --removemake --nodiffmenu $(cat pkg | egrep -v "^\s*(#|$)"); do
+sudo true
+until git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si --noconfirm && cd .. && rm -rf yay-bin; do
+  rm -rf yay-bin
+  sleep 1
+done
+
+until yay -Sy --needed --batchinstall --removemake --nodiffmenu $(cat base pkg | egrep -v "^\s*(#|$)"); do
   sleep 1
 done
 
 sh install/app
 sh install/config
+
+git clone https://github.com/hmanhng/dotfile.git ~/dotfiles && cd ~/dotfiles && ./install.sh zsh alacritty dunst

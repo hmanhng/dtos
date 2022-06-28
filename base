@@ -18,8 +18,9 @@ xcape
 xdotool
 xclip
 ly
-stow
 picom
 
 alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 trayer
+
+stow

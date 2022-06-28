@@ -12,6 +12,11 @@ sudo sed -i 's/#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
 cp -rf dotfiles/. $HOME/
 sudo cp -rf $HOME/etc/* /etc && rm -rf $HOME/etc
 sudo cp -rf $HOME/usr/* /usr && rm -rf $HOME/usr
+stow xmonad
+
+# Change all scripts in .local/bin to be executable.
+find $HOME/.local/bin -type f -print0 | xargs -0 chmod 775
+# xmonad --recompile
 
 wget -q --show-progress https://github.com/NyaMisty/AltServer-Linux/releases/download/v0.0.5/AltServer-x86_64 -O ~/.local/bin/AltServer-x86_64
 
@@ -21,11 +26,13 @@ wget -q --show-progress https://github.com/NyaMisty/AltServer-Linux/releases/dow
 # Fonts ms
 # git clone https://github.com/hmanhng/WindowsFonts.git $HOME/WindowsFonts && rm -rf $HOME/WindowsFonts/.git && sudo mv $HOME/WindowsFonts/ /usr/share/fonts/ && sudo chmod 644 /usr/share/fonts/WindowsFonts/* && fc-cache --force
 
+sudo systemctl enable ly
 sudo systemctl enable betterlockscreen@$USER
 sudo systemctl enable bluetooth
 sudo systemctl enable systemd-timesyncd
 sudo systemctl enable clash-core-service@$USER
 
+sudo chsh $USER -s "/bin/zsh"
 sudo usermod -aG video $USER # Permission for light
 echo "ideapad_laptop" | sudo tee -a /etc/modules
 sudo bash -c 'echo 259:2 > /sys/power/resume'
