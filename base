@@ -1,0 +1,15 @@
+xorg-server
+xorg-xkill
+xorg-xmessage
+xorg-xprop
+xorg-xrdb
+xorg-xset
+xorg-xsetroot
+xf86-video-intel
+xmonad
+xmonad-contrib
+xmobar
+alacritty
+zsh
+ly
+stow

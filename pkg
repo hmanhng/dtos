@@ -1,25 +1,8 @@
-#!/bin/bash
-
-xorg-server
-xorg-xkill
-xorg-xmessage
-xorg-xprop
-xorg-xrdb
-xorg-xset
-xorg-xsetroot
 light
-xf86-video-intel
 intel-media-driver
 intel-gpu-tools
-xmonad
-xmonad-contrib
-xmobar
 trayer
-alacritty
-zsh
-ly
 alsa-utils pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth
-stow
 
 #Pkg
 dunst
