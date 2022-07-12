@@ -28,4 +28,5 @@ mixinText: |-
           enable: true
           stack: system
           dns-hijack:
-          - 198.18.0.2:53
+          - 1.0.0.1:53
+connShowProcess: true

@@ -5,6 +5,7 @@ xorg-xprop
 xorg-xrdb
 xorg-xset
 xorg-xsetroot
+xorg-xbacklight
 xf86-video-intel
 xmonad
 xmonad-contrib
